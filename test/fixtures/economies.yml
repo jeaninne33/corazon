@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sector: MyString
+  empresa: MyString
+  ingreso_familiar: MyString
+  tipo_casa: MyString
+  condiciones_de_vivienda: MyString
+  persona_hab: MyString
+  cant_hijos: MyString
+  enceres_compartidos: MyString
+  adultos_mayores: MyString
+  discapacitados: MyString
+  enfermos: MyString
+
+two:
+  sector: MyString
+  empresa: MyString
+  ingreso_familiar: MyString
+  tipo_casa: MyString
+  condiciones_de_vivienda: MyString
+  persona_hab: MyString
+  cant_hijos: MyString
+  enceres_compartidos: MyString
+  adultos_mayores: MyString
+  discapacitados: MyString
+  enfermos: MyString

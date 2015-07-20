@@ -1,0 +1,59 @@
+<%= simple_form_for @persona do |f| %>
+  <% if @persona.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
+
+      <ul>
+      <% @persona.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :nombre1,label: 'Primer Nombre' %>
+    <%= f.input :nombre2 ,label: 'Segundo Nombre'%>
+    <%= f.input :apellido1,label: 'Primer Apellido' %>
+    <%= f.input :apellido2 ,label: 'Segundo Apellido'%>
+    <%= f.input :cedula,label: 'Cedula de identidad' %>
+    <%= f.input :direccion,label: 'Direccion' %>
+    <%= f.input :referencia ,label: 'Referencia'%>
+    <%= f.input :municipio,label: 'Municipio' %>
+    <%= f.input :parroquia,label: 'Parroquia' %>
+    <%= f.input :telefono1 ,label: 'Telefono'%>
+    <%= f.input :telefono2,label: 'Otro telf' %>
+
+<h2>Estudio Socio Economico</h2>
+    <%= f.simple_fields_for :economy do |economy| %>
+      <%= economy.input :sector %>
+      <%= economy.input :empresa %>
+      <%= economy.input :ingreso_familiar %>
+      <%= economy.input :tipo_casa %>
+      <%= economy.input :condiciones_de_vivienda %>
+      <%= economy.input :persona_hab %>
+      <%= economy.input :cant_hijos %>
+      <%= economy.input :enceres_compartidos %>
+      <%= economy.input :adultos_mayores %>
+      <%= economy.input :discapacitados %>
+      <%= economy.input :enfermos %>
+      <%= economy.input :pobreza_extrema%>
+      <%= economy.input :descripcion %>
+
+    <% end %>
+
+<h2>Conclusiones</h2>
+<%= f.simple_fields_for :conclusion do |conclusion|%>
+  <%= conclusion.input :solicitud %>
+  
+  <%= conclusion.input :estado %>
+  <%= conclusion.input :fecha %>
+
+
+<% end %>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
