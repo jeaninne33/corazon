@@ -44,10 +44,9 @@
 <h2>Conclusiones</h2>
 <%= f.simple_fields_for :conclusions do |conclusion|%>
   <%= conclusion.input :solicitud %>
-  
   <%= conclusion.input :estado %>
   <%= conclusion.input :fecha %>
-
+  <%= conclusion.input :_destroy, label: "remover" ,as: :check_boxes%>
 
 <% end %>
 
