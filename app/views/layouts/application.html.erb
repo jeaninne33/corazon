@@ -1,51 +1,36 @@
-
-
-
-
-
-<!-- AUI Framework -->
 <!DOCTYPE html>
     <html>
     <head>
 
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Fides Admin</title>
+        <title>Corazon Adentro</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-        <!-- Favicons -->
-
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/icons/apple-touch-icon-144-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/icons/apple-touch-icon-114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/icons/apple-touch-icon-72-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png" />
-        <link rel="shortcut icon" href="assets/images/icons/favicon.png" />
 
         <!--[if lt IE 9]>
           <script src="assets/js/minified/core/html5shiv.min.js"></script>
           <script src="assets/js/minified/core/respond.min.js"></script>
         <![endif]-->
 
-        <!-- Fides Admin CSS Core -->
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+
+
+  <%= stylesheet_link_tag   :defaults, 'aui-production.min.css','dark-blue.min.css','common.min.css','responsive.min.css' %>
+  <%= javascript_include_tag 'aui-production.min.js' %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
-
-        <!-- Theme UI -->
-
+        <!-- <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
         <link id="layout-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/fides/color-schemes/dark-blue.min.css" />
-
-        <!-- Fides Admin Responsive -->
-
         <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css" />
-        <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css" />
+       <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css" /> -->
 
-        <!-- Fides Admin JS -->
+        <!-- Fides Admin JS
 
-        <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+        <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script> -->
 
         <script>
             jQuery(window).load(
@@ -66,7 +51,7 @@
         
 
         <div id="loading" class="ui-front loader ui-widget-overlay bg-white opacity-100">
-            <img src="assets/images/loader-dark.gif" alt="" />
+             <%=image_tag "loader-dark.gif"%>
         </div>
 
         <div id="page-wrapper" class="demo-example">
@@ -130,7 +115,7 @@
                     <a href="javascript:;" class="tooltip-button hidden" title="Navigation Menu" id="responsive-open-menu">
                         <i class="glyph-icon icon-align-justify"></i>
                     </a>
-                    Fides Admin <i class="opacity-80">1.1</i>
+                    Sistema Social 0.1 <i class="opacity-80">beta</i>
                 </div>
                 <div class="hide" id="black-modal-60" title="Modal window example">
                     <div class="pad20A">
@@ -270,7 +255,7 @@
                 </div>
                 <div class="user-profile dropdown">
                     <a href="javascript:;" title="" class="user-ico clearfix" data-toggle="dropdown">
-                        <img width="36" src="assets/images/gravatar.jpg" alt="" />
+                      <%=  image_tag "gravatar.jpg", width: "36"%>
                         <span>Horia Simon</span>
                         <i class="glyph-icon icon-chevron-down"></i>
                     </a>
@@ -502,7 +487,7 @@
                                 <ul class="no-border messages-box">
                                     <li>
                                         <div class="messages-img">
-                                            <img width="32" src="assets/images/gravatar.jpg" alt="" />
+                      <%=  image_tag "gravatar.jpg", width: "32"%>
                                         </div>
                                         <div class="messages-content">
                                             <div class="messages-title">
@@ -520,7 +505,7 @@
                                     </li>
                                     <li>
                                         <div class="messages-img">
-                                            <img width="32" src="assets/images/gravatar.jpg" alt="" />
+                      <%=  image_tag "gravatar.jpg", width: "32"%>
                                         </div>
                                         <div class="messages-content">
                                             <div class="messages-title">
@@ -538,8 +523,7 @@
                                     </li>
                                     <li>
                                         <div class="messages-img">
-                                            <img width="32" src="assets/images/gravatar.jpg" alt="" />
-                                        </div>
+<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
                                         <div class="messages-content">
                                             <div class="messages-title">
                                                 <a href="javascript:;" class="font-orange" title="Message title">Another received message</a>
@@ -555,8 +539,7 @@
                                     </li>
                                     <li>
                                         <div class="messages-img">
-                                            <img width="32" src="assets/images/gravatar.jpg" alt="" />
-                                        </div>
+<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
                                         <div class="messages-content">
                                             <div class="messages-title">
                                                 <i class="glyph-icon icon-warning-sign font-red"></i>
@@ -573,8 +556,7 @@
                                     </li>
                                     <li>
                                         <div class="messages-img">
-                                            <img width="32" src="assets/images/gravatar.jpg" alt="" />
-                                        </div>
+<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
                                         <div class="messages-content">
                                             <div class="messages-title">
                                                 <i class="glyph-icon icon-tag font-blue"></i>
@@ -591,8 +573,7 @@
                                     </li>
                                     <li>
                                         <div class="messages-img">
-                                            <img width="32" src="assets/images/gravatar.jpg" alt="" />
-                                        </div>
+<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
                                         <div class="messages-content">
                                             <div class="messages-title">
                                                 <a href="javascript:;" class="font-orange" title="Message title">Another received message</a>
@@ -1213,110 +1194,8 @@
 
             </div><!-- #page-sidebar -->
             <div id="page-content-wrapper">
-                <div id="page-title">
+          <%= yield %>
 
-<h3>
-    Dynamic tables
-    <small>
-        Create dynamic tables using jQuery and Datatables.
-    </small>
-</h3>
-                    <div id="breadcrumb-right">
-                        <div id="sidebar-search">
-                            <input type="text" placeholder="Search..." class="autocomplete-input input tooltip-button" data-placement="bottom" title="Type &apos;jav&apos; to see the available tags..." id="" name="" />
-                            <i class="glyph-icon icon-search"></i>
-                        </div>
-                        <div class="float-right">
-                            <a href="javascript:;" class="btn medium bg-white tooltip-button black-modal-60 mrg5R" data-placement="bottom" title="Open modal window">
-                                <span class="button-content">
-                                    <i class="glyph-icon icon-question"></i>
-                                </span>
-                            </a>
-
-                            <div class="dropdown">
-                                <a href="javascript:;" class="btn medium bg-white" title="Example dropdown" data-toggle="dropdown">
-                                    <span class="button-content">
-                                        <i class="glyph-icon icon-cog float-left"></i>
-                                        <i class="glyph-icon icon-caret-down float-right"></i>
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu pad0A float-right">
-                                    <div class="medium-box">
-                                        <div class="bg-gray text-transform-upr font-size-12 font-bold font-gray-dark pad10A">Form example</div>
-                                        <div class="pad10A">
-                                            <p class="font-gray-dark pad0B">This <span class="label bg-blue-alt">dropdown box</span> uses the Twitter Bootstrap dropdown plugin.</p>
-                                            <div class="divider mrg10T mrg10B"></div>
-
-                                                <form id="demo-form" action="" class="col-md-12" method="" />
-                                                    <div class="form-row">
-                                                        <div class="form-label col-md-4">
-                                                            <label for="">
-                                                                Name:
-                                                                <span class="required">*</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-input col-md-8">
-                                                            <input type="text" id="email" name="email" data-type="email" data-trigger="change" data-required="true" class="parsley-validated" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-label col-md-4">
-                                                            <label for="">
-                                                                Email:
-                                                                <span class="required">*</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-input col-md-8">
-                                                            <input type="text" id="email" name="email" data-type="email" data-trigger="change" data-required="true" class="parsley-validated" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-label col-md-4">
-                                                            <label for="">
-                                                                Website:
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-input col-md-8">
-                                                            <input type="text" id="website" name="website" data-trigger="change" data-type="url" class="parsley-validated" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-label col-md-4">
-                                                            <label for="" class="label-description">
-                                                                Message:
-                                                                <span>20 chars min, 200 max</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-input col-md-8">
-                                                            <textarea id="message" name="message" data-trigger="keyup" data-rangelength="[20,200]" class="parsley-validated"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="divider"></div>
-                                                    <div class="form-row">
-                                                        <input type="hidden" name="superhidden" id="superhidden" />
-                                                        <div class="form-input col-md-8 col-md-offset-4">
-                                                            <a href="javascript:;" class="btn medium primary-bg radius-all-4" id="demo-form-valid" onclick="javascript:$(&apos;#demo-form&apos;).parsley( &apos;validate&apos; );" title="Validate!">
-                                                                <span class="button-content">
-                                                                    Validate the form above
-                                                                </span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                </form>
-
-                                        </div>
-
-                                        <div class="bg-black font-size-12 font-orange pad10A mrg5L mrg5R">Custom header example</div>
-                                        <div class="pad15A">
-                                            <p class="font-green text-center font-size-14 pad0B">Fides Admin comes with powerful helpers that you can use to create virtually any style you want. Read the documentation about helper classes to find out more!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-</div><!-- #page-title -->
 <div id="page-content">
 
 <script type="text/javascript">
@@ -1327,457 +1206,10 @@ $(document).ready(function() {
 
 </script>
 
-<h4>
-    Theming
-</h4>
-<p class="font-gray-dark">
-    Tables headers inherit the template secondary color scheme <b>.ui-state-default</b>.
-</p>
-
-<h4>
-    Headers alignments
-</h4>
-<p class="font-gray-dark">
-    By default the header texts in tables are centered. To align them either left or right you need to use one of the following core helper class: <b>text-left</b> or <b>text-right</b>
-</p>
-
-<h3>
-    Normal tables
-</h3>
-<p class="font-gray-dark">
-    To create a basic table you need to use the HTML structure below with the <b>.table</b> class.
-</p>
-
-<%= yield %>
-<!--
-<table class="table" id="example1">
-	<thead>
-		<tr>
-			<th>Rendering engine</th>
-			<th>Browser</th>
-			<th>Platform(s)</th>
-			<th>Engine version</th>
-			<th>CSS grade</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 4.0</td>
-			<td>Win 95+</td>
-			<td class="center">4</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 5.0</td>
-			<td>Win 95+</td>
-			<td class="center">5</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 5.5</td>
-			<td>Win 95+</td>
-			<td class="center">5.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 6</td>
-			<td>Win 98+</td>
-			<td class="center">6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet Explorer 7</td>
-			<td>Win XP SP2+</td>
-			<td class="center">7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>AOL browser (AOL desktop)</td>
-			<td>Win XP</td>
-			<td class="center">6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 1.0</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 1.5</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 2.0</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 3.0</td>
-			<td>Win 2k+ / OSX.3+</td>
-			<td class="center">1.9</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Camino 1.0</td>
-			<td>OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Camino 1.5</td>
-			<td>OSX.3+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Netscape 7.2</td>
-			<td>Win 95+ / Mac OS 8.6-9.2</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Netscape Browser 8</td>
-			<td>Win 98SE+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Netscape Navigator 9</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.0</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.1</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.2</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.2</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.3</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.3</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.4</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.4</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.5</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.6</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.7</td>
-			<td>Win 98+ / OSX.1+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.8</td>
-			<td>Win 98+ / OSX.1+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Seamonkey 1.1</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Epiphany 2.20</td>
-			<td>Gnome</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 1.2</td>
-			<td>OSX.3</td>
-			<td class="center">125.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 1.3</td>
-			<td>OSX.3</td>
-			<td class="center">312.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 2.0</td>
-			<td>OSX.4+</td>
-			<td class="center">419.3</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 3.0</td>
-			<td>OSX.4+</td>
-			<td class="center">522.1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>OmniWeb 5.5</td>
-			<td>OSX.4+</td>
-			<td class="center">420</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>iPod Touch / iPhone</td>
-			<td>iPod</td>
-			<td class="center">420.1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>S60</td>
-			<td>S60</td>
-			<td class="center">413</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 7.0</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 7.5</td>
-			<td>Win 95+ / OSX.2+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 8.0</td>
-			<td>Win 95+ / OSX.2+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 8.5</td>
-			<td>Win 95+ / OSX.2+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 9.0</td>
-			<td>Win 95+ / OSX.3+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 9.2</td>
-			<td>Win 88+ / OSX.3+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 9.5</td>
-			<td>Win 88+ / OSX.3+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera for Wii</td>
-			<td>Wii</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Nokia N800</td>
-			<td>N800</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Nintendo DS browser</td>
-			<td>Nintendo DS</td>
-			<td class="center">8.5</td>
-			<td class="center">C/A<sup>1</sup></td>
-		</tr>
-		<tr>
-			<td>KHTML</td>
-			<td>Konqureror 3.1</td>
-			<td>KDE 3.1</td>
-			<td class="center">3.1</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>KHTML</td>
-			<td>Konqureror 3.3</td>
-			<td>KDE 3.3</td>
-			<td class="center">3.3</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>KHTML</td>
-			<td>Konqureror 3.5</td>
-			<td>KDE 3.5</td>
-			<td class="center">3.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Tasman</td>
-			<td>Internet Explorer 4.5</td>
-			<td>Mac OS 8-9</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Tasman</td>
-			<td>Internet Explorer 5.1</td>
-			<td>Mac OS 7.6-9</td>
-			<td class="center">1</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Tasman</td>
-			<td>Internet Explorer 5.2</td>
-			<td>Mac OS 8-X</td>
-			<td class="center">1</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>NetFront 3.1</td>
-			<td>Embedded devices</td>
-			<td class="center">-</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>NetFront 3.4</td>
-			<td>Embedded devices</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>Dillo 0.8</td>
-			<td>Embedded devices</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>Links</td>
-			<td>Text only</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>Lynx</td>
-			<td>Text only</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>IE Mobile</td>
-			<td>Windows Mobile 6</td>
-			<td class="center">-</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>PSP browser</td>
-			<td>PSP</td>
-			<td class="center">-</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Other browsers</td>
-			<td>All others</td>
-			<td>-</td>
-			<td class="center">-</td>
-			<td class="center">U</td>
-		</tr>
-	</tbody>
-	<tfoot>
-		<tr>
-			<th>Rendering engine</th>
-			<th>Browser</th>
-			<th>Platform(s)</th>
-			<th>Engine version</th>
-			<th>CSS grade</th>
-		</tr>
-	</tfoot>
-</table>-->
 
 
-                	</div><!-- #page-content -->
+
+
             </div><!-- #page-main -->
         </div><!-- #page-wrapper -->
 

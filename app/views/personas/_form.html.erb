@@ -1,4 +1,5 @@
-<%= simple_form_for @persona, :html=> { class: 'form-row' }  do |f| %>
+
+<%= simple_form_for @persona, :html=> { class: 'form-horizontal' }  do |f| %>
   <% if @persona.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
@@ -10,106 +11,265 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-input col-md-12">
-    <div class="col-md-6">
-      <%= f.input :nombre1,label: 'Primer Nombre' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :nombre2 ,label: 'Segundo Nombre'%>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :apellido1,label: 'Primer Apellido' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :apellido2 ,label: 'Segundo Apellido'%>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :cedula,label: 'Cedula de identidad' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :direccion,label: 'Direccion' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :referencia ,label: 'Referencia'%>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :municipio,label: 'Municipio' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :parroquia,label: 'Parroquia' %>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :telefono1 ,label: 'Telefono'%>
-    </div>
-    <div class="col-md-6">
-      <%= f.input :telefono2,label: 'Otro telf' %>
-    </div>
+
+
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Nombres y Apellidos </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <%= f.input :nombre1,label: false, :placeholder=>"Primer Nombre"%>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.input :nombre2,label: false, :placeholder=>"Segundo Nombre" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.input :apellido1,label: false, :placeholder=>"Primer Apellido" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.input :apellido2,label: false, :placeholder=>"Segundo Apellido" %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Cedula de Identidad </label>
+                </div>
+                <div class="form-input col-md-7">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <%= f.input :cedula,label: false, :placeholder=>"Cedula de Identidad" %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Municipio, Parroquia  </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <%= f.input :municipio,label: false, :placeholder=>"Municipio" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.input :parroquia,label: false, :placeholder=>"Parroquia" %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+    <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Dirección, Referencia  </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <%= f.input :direccion,label: false, :placeholder=>"Direccion" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.input :referencia,label: false, :placeholder=>"Referencia" %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+   <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Telefonos  </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <%= f.input :telefono1,label: false, :placeholder=>"Telefono principal" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.input :telefono2,label: false, :placeholder=>"Otro telf" %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
 
 <h2>Estudio Socio Economico</h2>
     <%= f.simple_fields_for :economy do |economy| %>
-          <div class="col-md-6">
-            <%= economy.input :sector %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :empresa %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :ingreso_familiar %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :tipo_casa %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :condiciones_de_vivienda %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :persona_hab %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :cant_hijos %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :enceres_compartidos %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :adultos_mayores %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :discapacitados %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :enfermos %>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :pobreza_extrema%>
-          </div>
-          <div class="col-md-6">
-            <%= economy.input :descripcion %>
-          </div>
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Informacion Laboral </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Nombre de la empresa<%= economy.input :empresa ,label: false, :placeholder=>"Nombre de la Empresa" %>
+                        </div>
+                        <div class="col-md-3">
+                            Sector <%= economy.input :sector, collection: ['Publico','Privado'], label: false, :placeholder=>"Sector", prompt: "Seleccione un sector"%>
+                        </div>
+                        <div class="col-md-3">
+                           Ingreso Familiar <%= economy.input :ingreso_familiar ,label: false, :placeholder=>"Ingreso Familiar en Bs." %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Informacion de la Vivienda </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Tipo de vivienda<%= economy.input :tipo_casa, collection: ['Propia','Alquilada','Refugio Temporal'] ,label: false, prompt: "Tipo de Casa" %>
+                        </div>
+                        <div class="col-md-3">
+                          Condiciones de la Vivienda <%= economy.input :condiciones_de_vivienda, collection: ['Excelente','Buena','Regular','Mala'], label: false, :placeholder=>"Condiciones de la vivienda", prompt: "Seleccione una condicion"%>
+                        </div>
+                        <div class="col-md-3">
+                            Personas/hab<%= economy.input :persona_hab,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas/Hab." , prompt: 'Personas por hab.'%>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+          <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Datos Socioeconomicos </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                          Cantidad de Hijos<%= economy.input :cant_hijos,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Cant. de hijos" , prompt: 'Cant. de Hijos'%>
+
+                        </div>
+                        <div class="col-md-3">
+                          Enceres Compartidos <%= economy.input :enceres_compartidos, collection: ['si','no'],as: :radio_buttons, label: false, :placeholder=>"Enceres compartidos"%>
+                        </div>
+                        <div class="col-md-3">
+                          Adultos Mayores<%= economy.input :adultos_mayores, collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "Adultos Mayores" %>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+       <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Condiciones de salud </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                          Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Personas con discapacidad'%>
+
+                        </div>
+                        <div class="col-md-3">
+                          Personas Enfermas <%= economy.input :enfermos, collection: ['si','no'],as: :radio_buttons, label: false%>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Descripcion de la Visita </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                          Descripcion<%= economy.input :descripcion ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Descripcion'%>
+
+                        </div>
+                        <div class="col-md-3">
+                          Pobreza Extrema <%= economy.input :pobreza_extrema, collection: ['si','no'],as: :radio_buttons, label: false%>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
 
     <% end %>
 
 <h2>Conclusiones</h2>
 <%= f.simple_fields_for :conclusions do |conclusion|%>
+
+
+  <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Conclusiones </label>
+                </div>
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                          <%= conclusion.association :ayudas, collection: Ayuda.all.pluck("nombre"), as: :select %>
+
+                        </div>
+                        <div class="col-md-3">
+                          Estado de solicitud <%= conclusion.input :estado, collection: ['si','no'],as: :radio_buttons, label: false%>
+                        </div>
+                        <div class="col-md-3">
+                          Fecha de solicitud <%= conclusion.input :fecha ,as: :date,start_year: Date.today.year - 0,
+                              end_year: Date.today.year - 0, discard_day: false,
+                              order: [:day,:month, :year] , label: false%>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+  
+
       <div class="col-md-6">
-        <%= conclusion.input :solicitud %>
-      </div>
-      <div class="col-md-6">
-        <%= conclusion.input :estado %>
-      </div>
-      <div class="col-md-6">
-        <%= conclusion.input :fecha %>
-      </div>
-      <div class="col-md-6">
-        <%= conclusion.input :_destroy, label: "remover" ,as: :check_boxes%>
+        <%#= conclusion.input :_destroy, label: "remover" ,as: :check_boxes%>
       </div>
 
 <% end %>
 
 
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="btn primary-bg medium">
+    <%= f.button :submit  %>
   </div>
   </div>
 <% end %>

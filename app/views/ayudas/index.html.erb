@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ayudas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ayudas.each do |ayuda| %>
+      <tr>
+        <td><%= ayuda.nombre %></td>
+        <td><%= link_to 'Show', ayuda %></td>
+        <td><%= link_to 'Edit', edit_ayuda_path(ayuda) %></td>
+        <td><%= link_to 'Destroy', ayuda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ayuda', new_ayuda_path %>
