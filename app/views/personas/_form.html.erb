@@ -1,4 +1,4 @@
-<%= simple_form_for @persona do |f| %>
+<%= simple_form_for @persona, :html=> { class: 'form-row' }  do |f| %>
   <% if @persona.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
@@ -10,43 +10,99 @@
       </ul>
     </div>
   <% end %>
-
-    <%= f.input :nombre1,label: 'Primer Nombre' %>
-    <%= f.input :nombre2 ,label: 'Segundo Nombre'%>
-    <%= f.input :apellido1,label: 'Primer Apellido' %>
-    <%= f.input :apellido2 ,label: 'Segundo Apellido'%>
-    <%= f.input :cedula,label: 'Cedula de identidad' %>
-    <%= f.input :direccion,label: 'Direccion' %>
-    <%= f.input :referencia ,label: 'Referencia'%>
-    <%= f.input :municipio,label: 'Municipio' %>
-    <%= f.input :parroquia,label: 'Parroquia' %>
-    <%= f.input :telefono1 ,label: 'Telefono'%>
-    <%= f.input :telefono2,label: 'Otro telf' %>
+  <div class="form-input col-md-12">
+    <div class="col-md-6">
+      <%= f.input :nombre1,label: 'Primer Nombre' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :nombre2 ,label: 'Segundo Nombre'%>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :apellido1,label: 'Primer Apellido' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :apellido2 ,label: 'Segundo Apellido'%>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :cedula,label: 'Cedula de identidad' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :direccion,label: 'Direccion' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :referencia ,label: 'Referencia'%>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :municipio,label: 'Municipio' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :parroquia,label: 'Parroquia' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :telefono1 ,label: 'Telefono'%>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :telefono2,label: 'Otro telf' %>
+    </div>
 
 <h2>Estudio Socio Economico</h2>
     <%= f.simple_fields_for :economy do |economy| %>
-      <%= economy.input :sector %>
-      <%= economy.input :empresa %>
-      <%= economy.input :ingreso_familiar %>
-      <%= economy.input :tipo_casa %>
-      <%= economy.input :condiciones_de_vivienda %>
-      <%= economy.input :persona_hab %>
-      <%= economy.input :cant_hijos %>
-      <%= economy.input :enceres_compartidos %>
-      <%= economy.input :adultos_mayores %>
-      <%= economy.input :discapacitados %>
-      <%= economy.input :enfermos %>
-      <%= economy.input :pobreza_extrema%>
-      <%= economy.input :descripcion %>
+          <div class="col-md-6">
+            <%= economy.input :sector %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :empresa %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :ingreso_familiar %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :tipo_casa %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :condiciones_de_vivienda %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :persona_hab %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :cant_hijos %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :enceres_compartidos %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :adultos_mayores %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :discapacitados %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :enfermos %>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :pobreza_extrema%>
+          </div>
+          <div class="col-md-6">
+            <%= economy.input :descripcion %>
+          </div>
 
     <% end %>
 
 <h2>Conclusiones</h2>
 <%= f.simple_fields_for :conclusions do |conclusion|%>
-  <%= conclusion.input :solicitud %>
-  <%= conclusion.input :estado %>
-  <%= conclusion.input :fecha %>
-  <%= conclusion.input :_destroy, label: "remover" ,as: :check_boxes%>
+      <div class="col-md-6">
+        <%= conclusion.input :solicitud %>
+      </div>
+      <div class="col-md-6">
+        <%= conclusion.input :estado %>
+      </div>
+      <div class="col-md-6">
+        <%= conclusion.input :fecha %>
+      </div>
+      <div class="col-md-6">
+        <%= conclusion.input :_destroy, label: "remover" ,as: :check_boxes%>
+      </div>
 
 <% end %>
 
@@ -54,5 +110,6 @@
 
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>
