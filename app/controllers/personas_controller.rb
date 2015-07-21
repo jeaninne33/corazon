@@ -16,7 +16,7 @@ class PersonasController < ApplicationController
   def new
     @persona = Persona.new
     @persona.build_economy
-    #@persona.conclusions.build  
+    @persona.conclusions.build  
 
   end
 
