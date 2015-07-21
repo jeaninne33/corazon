@@ -238,7 +238,7 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                          <%= conclusion.association :ayudas, collection: Ayuda.all.pluck("nombre"), as: :select %>
+                          <%= conclusion.input :solicitud , collection: Ayuda.all.pluck("nombre"), as: :select %>
 
                         </div>
                         <div class="col-md-3">
