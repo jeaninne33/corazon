@@ -105,8 +105,12 @@
 
 
 <p id="notice"><%= notice %></p>
+<div class="well"><h4>
+<%= link_to 'Nueva Persona', new_persona_path %>
+</h4></div>
 
-
+<hr />
+<br />
 <table>
   <thead>
     <tr>
@@ -143,7 +147,7 @@
         <td><%= link_to 'Edit', edit_persona_path(persona) %></td>
         <td><%= link_to 'Destroy', persona, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-            <%= link_to 'Destroy',  post,  method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%#= link_to 'Destroy',  post,  method: :delete, data: { confirm: 'Are you sure?' } %>
 
 
       </tr>

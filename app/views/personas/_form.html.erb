@@ -167,14 +167,14 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                          Cantidad de Hijos<%= economy.input :cant_hijos,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Cant. de hijos" , prompt: 'Cant. de Hijos'%>
+                          Cantidad de Hijos<%= economy.input :cant_hijos,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Cant. de hijos" , prompt: 'Cant. de Hijos'%>
 
                         </div>
                         <div class="col-md-3">
                           Enceres Compartidos <%= economy.input :enceres_compartidos, collection: ['si','no'],as: :radio_buttons, label: false, :placeholder=>"Enceres compartidos"%>
                         </div>
                         <div class="col-md-3">
-                          Adultos Mayores<%= economy.input :adultos_mayores, collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "Adultos Mayores" %>
+                          Adultos Mayores<%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "Adultos Mayores" %>
 
                         </div>
 
@@ -192,7 +192,7 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                          Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Personas con discapacidad'%>
+                          Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Personas con discapacidad'%>
 
                         </div>
                         <div class="col-md-3">
@@ -258,12 +258,12 @@
 
 
 
-  
+
 
       <div class="col-md-6">
         <%#= conclusion.input :_destroy, label: "remover" ,as: :check_boxes%>
       </div>
-
+<br />
 <% end %>
 
 

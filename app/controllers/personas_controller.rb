@@ -16,13 +16,13 @@ class PersonasController < ApplicationController
   def new
     @persona = Persona.new
     @persona.build_economy
-    @persona.conclusions.build  
+   3.times { @persona.conclusions.build  }
 
   end
 
   # GET /personas/1/edit
   def edit
-    @persona.conclusions.build  
+   # @persona.conclusions.build  
   end
 
   # POST /personas
