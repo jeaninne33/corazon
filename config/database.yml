@@ -49,6 +49,8 @@ test:
 #
 production:
   <<: *default
-  database: corazon_production
   username: corazon
+  adapter: postgresql
+  database: corazon_production
+  encoding: unicode 
   password: <%= ENV['CORAZON_DATABASE_PASSWORD'] %>
