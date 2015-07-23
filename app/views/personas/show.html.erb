@@ -1,59 +1,65 @@
-<p id="notice"><%= notice %></p>
+<br/>
+<%= notice %>
+<h4 class="heading-1 clearfix">
+    <i class="glyph-icon icon-tags heading-icon"></i>
+    <div class="heading-content">
+       <%=  @persona.nombre1.capitalize+' '+@persona.nombre2.capitalize+' '+@persona.apellido1.capitalize+' '+@persona.apellido2.capitalize%>.
+        <small>
+        <strong>Cedula de Identidad:</strong> <%= @persona.cedula %><br />
+        <strong>Direccion: </strong><%= @persona.direccion.capitalize %>,  <%= @persona.referencia.capitalize %>;  Parroquia <%= @persona.parroquia.capitalize %>, Municipio <%= @persona.municipio.capitalize %>.<br />
+        <strong>Telefonos :</strong><%= @persona.telefono1 %>   <%= @persona.telefono2 %>
 
-<p>
-  <strong>Nombre1:</strong>
-  <%= @persona.nombre1 %>
-</p>
 
-<p>
-  <strong>Nombre2:</strong>
-  <%= @persona.nombre2 %>
-</p>
 
-<p>
-  <strong>Apellido1:</strong>
-  <%= @persona.apellido1 %>
-</p>
+        </small>
+    </div>
+</h4>
 
-<p>
-  <strong>Apellido2:</strong>
-  <%= @persona.apellido2 %>
-</p>
+<div class="divider"></div>
 
-<p>
-  <strong>Cedula:</strong>
-  <%= @persona.cedula %>
-</p>
+<h4 class="heading-1 clearfix">
+Estudio Socioeconomico
+<small><%= "<strong>Empresa donde trabaja ó Ocupacion: #{@persona.economy.empresa}</strong>".html_safe if !@persona.economy.empresa.blank?  %> 
+<%="(#{@persona.economy.sector} )" if !@persona.economy.sector.blank? %>
+<%="<strong>Ingreso Familiar: </strong> #{@persona.economy.ingreso_familiar}Bs".html_safe if  !@persona.economy.ingreso_familiar.blank? %><br />
 
-<p>
-  <strong>Direccion:</strong>
-  <%= @persona.direccion %>
-</p>
+<%= "<strong>Tipo de Vivienda: </strong> #{@persona.economy.tipo_casa}".html_safe  if !@persona.economy.tipo_casa.blank?%>
+<%= "<strong>Condiciones:  </strong>#{@persona.economy.condiciones_de_vivienda}".html_safe  if !@persona.economy.condiciones_de_vivienda.blank? %>
+<%= "<strong>Personas/Hab: </strong> #{ @persona.economy.persona_hab}".html_safe if !@persona.economy.persona_hab.blank?%><br />
 
-<p>
-  <strong>Referencia:</strong>
-  <%= @persona.referencia %>
-</p>
 
-<p>
-  <strong>Municipio:</strong>
-  <%= @persona.municipio %>
-</p>
+<%= "<strong>Cantidade de Hijos: </strong> #{@persona.economy.cant_hijos}".html_safe if !@persona.economy.cant_hijos.blank? %>
+<%= "<strong>Enceres Compartidos: </strong>#{@persona.economy.enceres_compartidos}".html_safe if !@persona.economy.enceres_compartidos.blank? %>
+<%= "<strong>Adultos Mayores: </strong> #{@persona.economy.adultos_mayores}".html_safe if !@persona.economy.adultos_mayores.blank? %>
+<br />
+<%= "<strong>Personas Discapacitadas: </strong>#{@persona.economy.discapacitados}".html_safe if !@persona.economy.discapacitados.blank? %>
+<%= "<strong>Personas Enfermas : </strong>#{@persona.economy.enfermos}".html_safe if !@persona.economy.enfermos.blank? %>
 
-<p>
-  <strong>Parroquia:</strong>
-  <%= @persona.parroquia %>
-</p>
 
-<p>
-  <strong>Telefono1:</strong>
-  <%= @persona.telefono1 %>
-</p>
+</small>
+</h4>
+<div class="divider"></div>
 
-<p>
-  <strong>Telefono2:</strong>
-  <%= @persona.telefono2 %>
-</p>
+<h4 class="heading-1 clearfix">
+Conclusión(es)
+<small>
+<% if !@persona.conclusions.blank? %>
+  <% for item in @persona.conclusions %>
+  <li>    <%= "<strong>Solicitud : </strong>#{item.solicitud}".html_safe if !item.solicitud.blank? %>
+          <%= "<strong>Estado de la solicitud : </strong>#{item.estado}".html_safe if !item.estado.blank? %>
+          <%= "<strong>Fecha de la solicitud : </strong>#{item.fecha}".html_safe if !item.fecha.blank? %>
+  </li>
+  <div class="divider"></div>
+
+  <% end %>
+<% else %>
+  
+<% end %>
+
+
+
+</small>
+</h4>
 
 <%= link_to 'Editar', edit_persona_path(@persona) %> |
 <%= link_to 'Volver', personas_path %>

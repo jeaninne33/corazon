@@ -133,6 +133,7 @@ $(document).ready(function() {
 <table class="table" id="example1">
 	<thead>
 		<tr>
+			<th>#</th>
 			<th>Nombres y Apellidos</th>
 			<th>Cedula</th>
 			<th>Municipio</th>
@@ -145,10 +146,11 @@ $(document).ready(function() {
 	<tbody>
  <% @personas.each do |persona| %>
       <tr>
-        <td><%= persona.nombre1+' '+persona.nombre2+' '+persona.apellido1+' '+persona.apellido2%></td>
+      	<td><%= persona.id%></td>
+        <td><%= persona.nombre1.capitalize+' '+persona.nombre2.capitalize+' '+persona.apellido1.capitalize+' '+persona.apellido2.capitalize%></td>
         <td><%= persona.cedula %></td>
-        <td><%= persona.municipio %></td>
-        <td><%= persona.parroquia %></td>
+        <td><%= persona.municipio.capitalize %></td>
+        <td><%= persona.parroquia.capitalize %></td>
         <td><%= persona.telefono1 %></td>
         <td class="text-right">
         <div class="dropdown open">
