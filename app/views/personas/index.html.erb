@@ -105,67 +105,18 @@
 
 
 <p id="notice"><%= notice %></p>
-<div class="well"><h4>
-<%= link_to 'Nueva Persona', new_persona_path %>
-</h4></div>
 
-<hr />
-<br />
-<table>
-  <thead>
-    <tr>
-      <th>Nombre1</th>
-      <th>Nombre2</th>
-      <th>Apellido1</th>
-      <th>Apellido2</th>
-      <th>Cedula</th>
-      <th>Direccion</th>
-      <th>Referencia</th>
-      <th>Municipio</th>
-      <th>Parroquia</th>
-      <th>Telefono1</th>
-      <th>Telefono2</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @personas.each do |persona| %>
-      <tr>
-        <td><%= persona.nombre1 %></td>
-        <td><%= persona.nombre2 %></td>
-        <td><%= persona.apellido1 %></td>
-        <td><%= persona.apellido2 %></td>
-        <td><%= persona.cedula %></td>
-        <td><%= persona.direccion %></td>
-        <td><%= persona.referencia %></td>
-        <td><%= persona.municipio %></td>
-        <td><%= persona.parroquia %></td>
-        <td><%= persona.telefono1 %></td>
-        <td><%= persona.telefono2 %></td>
-        <td><%= link_to 'Show', persona %></td>
-        <td><%= link_to 'Edit', edit_persona_path(persona) %></td>
-        <td><%= link_to 'Destroy', persona, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-            <%#= link_to 'Destroy',  post,  method: :delete, data: { confirm: 'Are you sure?' } %>
-
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'Nueva Persona', new_persona_path %>
 
 <div class="divider"></div>
 
 <h3>
-    Striped tables
+    Listado de Solicitantes
 </h3>
 <p class="font-gray-dark">
-kkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñkkñ    Striped tables can by created by add the <b>.table-striped</b> class to your tables. These kind of tables have the odd row have a light gray color to make it easy to differentiate between rows.
+ Listado de personas solicitando ayudas en la jornada  <b>Corazon Adentro</b> 
+
 </p>
 
 
@@ -178,449 +129,72 @@ $(document).ready(function() {
 
 </script>
 
-<h4>
-    Theming
-</h4>
-<p class="font-gray-dark">
-    Tables headers inherit the template secondary color scheme <b>.ui-state-default</b>.
-</p>
-
-<h4>
-    Headers alignments
-</h4>
-<p class="font-gray-dark">
-    By default the header texts in tables are centered. To align them either left or right you need to use one of the following core helper class: <b>text-left</b> or <b>text-right</b>
-</p>
-
-<h3>
-    Normal tables
-</h3>
-<p class="font-gray-dark">
-    To create a basic table you need to use the HTML structure below with the <b>.table</b> class.
-</p>
 
 <table class="table" id="example1">
 	<thead>
 		<tr>
-			<th>Rendering engine</th>
-			<th>Browser</th>
-			<th>Platform(s)</th>
-			<th>Engine version</th>
-			<th>CSS grade</th>
+			<th>Nombres y Apellidos</th>
+			<th>Cedula</th>
+			<th>Municipio</th>
+			<th>Parroquia</th>
+			<th>Telefono</th>
+			<th></th>
+
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 4.0</td>
-			<td>Win 95+</td>
-			<td class="center">4</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 5.0</td>
-			<td>Win 95+</td>
-			<td class="center">5</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 5.5</td>
-			<td>Win 95+</td>
-			<td class="center">5.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet
-				 Explorer 6</td>
-			<td>Win 98+</td>
-			<td class="center">6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>Internet Explorer 7</td>
-			<td>Win XP SP2+</td>
-			<td class="center">7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Trident</td>
-			<td>AOL browser (AOL desktop)</td>
-			<td>Win XP</td>
-			<td class="center">6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 1.0</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 1.5</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 2.0</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Firefox 3.0</td>
-			<td>Win 2k+ / OSX.3+</td>
-			<td class="center">1.9</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Camino 1.0</td>
-			<td>OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Camino 1.5</td>
-			<td>OSX.3+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Netscape 7.2</td>
-			<td>Win 95+ / Mac OS 8.6-9.2</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Netscape Browser 8</td>
-			<td>Win 98SE+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Netscape Navigator 9</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.0</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.1</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.2</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.2</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.3</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.3</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.4</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.4</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.5</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.6</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">1.6</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.7</td>
-			<td>Win 98+ / OSX.1+</td>
-			<td class="center">1.7</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Mozilla 1.8</td>
-			<td>Win 98+ / OSX.1+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Seamonkey 1.1</td>
-			<td>Win 98+ / OSX.2+</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Gecko</td>
-			<td>Epiphany 2.20</td>
-			<td>Gnome</td>
-			<td class="center">1.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 1.2</td>
-			<td>OSX.3</td>
-			<td class="center">125.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 1.3</td>
-			<td>OSX.3</td>
-			<td class="center">312.8</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 2.0</td>
-			<td>OSX.4+</td>
-			<td class="center">419.3</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>Safari 3.0</td>
-			<td>OSX.4+</td>
-			<td class="center">522.1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>OmniWeb 5.5</td>
-			<td>OSX.4+</td>
-			<td class="center">420</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>iPod Touch / iPhone</td>
-			<td>iPod</td>
-			<td class="center">420.1</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Webkit</td>
-			<td>S60</td>
-			<td>S60</td>
-			<td class="center">413</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 7.0</td>
-			<td>Win 95+ / OSX.1+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 7.5</td>
-			<td>Win 95+ / OSX.2+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 8.0</td>
-			<td>Win 95+ / OSX.2+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 8.5</td>
-			<td>Win 95+ / OSX.2+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 9.0</td>
-			<td>Win 95+ / OSX.3+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 9.2</td>
-			<td>Win 88+ / OSX.3+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera 9.5</td>
-			<td>Win 88+ / OSX.3+</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Opera for Wii</td>
-			<td>Wii</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Nokia N800</td>
-			<td>N800</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Presto</td>
-			<td>Nintendo DS browser</td>
-			<td>Nintendo DS</td>
-			<td class="center">8.5</td>
-			<td class="center">C/A<sup>1</sup></td>
-		</tr>
-		<tr>
-			<td>KHTML</td>
-			<td>Konqureror 3.1</td>
-			<td>KDE 3.1</td>
-			<td class="center">3.1</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>KHTML</td>
-			<td>Konqureror 3.3</td>
-			<td>KDE 3.3</td>
-			<td class="center">3.3</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>KHTML</td>
-			<td>Konqureror 3.5</td>
-			<td>KDE 3.5</td>
-			<td class="center">3.5</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Tasman</td>
-			<td>Internet Explorer 4.5</td>
-			<td>Mac OS 8-9</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Tasman</td>
-			<td>Internet Explorer 5.1</td>
-			<td>Mac OS 7.6-9</td>
-			<td class="center">1</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Tasman</td>
-			<td>Internet Explorer 5.2</td>
-			<td>Mac OS 8-X</td>
-			<td class="center">1</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>NetFront 3.1</td>
-			<td>Embedded devices</td>
-			<td class="center">-</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>NetFront 3.4</td>
-			<td>Embedded devices</td>
-			<td class="center">-</td>
-			<td class="center">A</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>Dillo 0.8</td>
-			<td>Embedded devices</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>Links</td>
-			<td>Text only</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>Lynx</td>
-			<td>Text only</td>
-			<td class="center">-</td>
-			<td class="center">X</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>IE Mobile</td>
-			<td>Windows Mobile 6</td>
-			<td class="center">-</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Misc</td>
-			<td>PSP browser</td>
-			<td>PSP</td>
-			<td class="center">-</td>
-			<td class="center">C</td>
-		</tr>
-		<tr>
-			<td>Other browsers</td>
-			<td>All others</td>
-			<td>-</td>
-			<td class="center">-</td>
-			<td class="center">U</td>
-		</tr>
+ <% @personas.each do |persona| %>
+      <tr>
+        <td><%= persona.nombre1+' '+persona.nombre2+' '+persona.apellido1+' '+persona.apellido2%></td>
+        <td><%= persona.cedula %></td>
+        <td><%= persona.municipio %></td>
+        <td><%= persona.parroquia %></td>
+        <td><%= persona.telefono1 %></td>
+        <td class="text-right">
+        <div class="dropdown open">
+            <a href="javascript:;" title="" class="btn medium bg-orange" data-toggle="dropdown">
+                <span class="button-content">
+                    <i class="glyph-icon font-size-11 icon-cog"></i>
+                    <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                </span>
+            </a>
+            <ul class="dropdown-menu float-right">
+			  <li>
+                <%= link_to  persona  do %>
+                 <i class="glyph-icon icon-download mrg5R"></i> Mostrar
+                <% end -%>
+              </li>
+              <li>
+                 <%= link_to edit_persona_path(persona) do%>
+                   <i class="glyph-icon icon-edit mrg5R"></i> Editar
+                 <% end -%>
+              </li>
+              <li class="divider"></li>
+              <li>
+                 <%= link_to  persona, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                    <i class="glyph-icon icon-remove mrg5R"></i>Borrar
+                    <% end -%>
+              </li>
+            </ul>
+        </div>
+
+</td>
+
+
+      </tr>
+    <% end %>
+
+
+		
 	</tbody>
 	<tfoot>
 		<tr>
-			<th>Rendering engine</th>
-			<th>Browser</th>
-			<th>Platform(s)</th>
-			<th>Engine version</th>
-			<th>CSS grade</th>
+			<th>Nombres y Apellidos</th>
+			<th>Cedula</th>
+			<th>Municipio</th>
+			<th>Parroquia</th>
+			<th>Telefono</th>
+			<th></th>
 		</tr>
 	</tfoot>
 </table>

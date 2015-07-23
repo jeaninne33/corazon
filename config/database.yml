@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: "satyr1232009"
+  password: "satyr123"
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -50,7 +50,5 @@ test:
 production:
   <<: *default
   username: corazon
-  adapter: postgresql
   database: corazon_production
-  encoding: unicode 
   password: <%= ENV['CORAZON_DATABASE_PASSWORD'] %>
