@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :ayudas
 
   resources :personas
+  get 'personas/:id/listado' => 'personas#listado'
+  get 'personas/:id/totales' => 'personas#totales'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

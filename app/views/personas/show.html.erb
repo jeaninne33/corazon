@@ -38,6 +38,20 @@ Estudio Socioeconomico
 
 </small>
 </h4>
+
+
+<div class="divider"></div>
+<h4 class="heading-1 clearfix">
+Descripcion de la visita
+
+<small>
+
+<%= "<strong>Personas Enfermas : </strong>#{@persona.economy.descripcion}".html_safe if !@persona.economy.descripcion.blank? %>
+<%= "<strong>Personas Enfermas : </strong>#{@persona.economy.pobreza_extrema}".html_safe if !@persona.economy.pobreza_extrema.blank? %>
+
+</small>
+</h4>
+
 <div class="divider"></div>
 
 <h4 class="heading-1 clearfix">

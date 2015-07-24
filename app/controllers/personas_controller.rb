@@ -1,8 +1,52 @@
 class PersonasController < ApplicationController
   before_action :set_persona, only: [:show, :edit, :update, :destroy]
-
+   layout "limpio", only: [:listado,:totales]
   # GET /personas
   # GET /personas.json
+
+  def listado
+   
+    @resultado = Persona.all.order(:municipio)
+  end
+
+  def totales
+  
+
+  @beca_educacion = Conclusion.where(:solicitud=> "Beca Educacion").count
+  @beca_universitaria = Conclusion.where(:solicitud=> "Beca Universitaria").count
+  @econ_Discapacidad= Conclusion.where(:solicitud=> "Econ. Discapacidad").count
+  @operacion= Conclusion.where(:solicitud=> "Operacion").count
+  @estudio_especializado= Conclusion.where(:solicitud=> "Estudio Especializado").count
+  @medicinas= Conclusion.where(:solicitud=> "Medicinas").count
+  @silla_de_ruedas=Conclusion.where(:solicitud=> "Silla de Ruedas").count
+  @andadera=Conclusion.where(:solicitud=> "Andadera").count
+  @baston=Conclusion.where(:solicitud=> "Baston").count
+  @botas_ortopedicas=Conclusion.where(:solicitud=> "Botas Ortopedicas").count
+  @protesis=Conclusion.where(:solicitud=> "Protesis").count
+  @cama=Conclusion.where(:solicitud=> "Cama").count
+  @cama_clinica=Conclusion.where(:solicitud=> "Cama Clinica").count
+  @colchon=Conclusion.where(:solicitud=> "Colchon").count
+  @colchon_clinico=Conclusion.where(:solicitud=> "Colchon Clinico").count
+  @colchon_antiescaras=Conclusion.where(:solicitud=> "Colchon Antiescaras").count
+  @lavadora=Conclusion.where(:solicitud=> "Lavadora").count
+  @cocina=Conclusion.where(:solicitud=> "Cocina ").count
+  @nevera=Conclusion.where(:solicitud=> "Nevera ").count
+  @freezer=Conclusion.where(:solicitud=> "Freezer").count
+  @hijos_de_vzla=Conclusion.where(:solicitud=> "Hijos de Vzla  ").count
+  @amor_mayor=Conclusion.where(:solicitud=> "Amor Mayor").count
+  @vivienda=Conclusion.where(:solicitud=> "Vivienda").count
+  @kit_construccion=Conclusion.where(:solicitud=> "Kit de material de construccion").count
+  @techo=Conclusion.where(:solicitud=> "Techo").count
+  @tanque=Conclusion.where(:solicitud=> "Tanque").count
+  @maquina_coser=Conclusion.where(:solicitud=> "Maquina de Coser").count
+  @uniformes=Conclusion.where(:solicitud=> "Uniformes").count
+  @kit_deportivo=Conclusion.where(:solicitud=> "Kit deportivo").count
+  @pasajes=Conclusion.where(:solicitud=> "Pasaje(s)").count
+
+@totales = @beca_educacion+@beca_universitaria+@econ_Discapacidad+@operacion+@estudio_especializado+@medicinas+@silla_de_ruedas+@andadera+@baston+@botas_ortopedicas+@protesis+@cama+@cama_clinica+@colchon+@colchon_clinico+@colchon_antiescaras+@lavadora+@cocina+@nevera+@freezer+@hijos_de_vzla+@amor_mayor+@vivienda+@kit_construccion+@techo+@tanque+@maquina_coser+@uniformes+@kit_deportivo+@pasajes
+
+  end
+
   def index
     @personas = Persona.all
   end
