@@ -1,6 +1,6 @@
 class PersonasController < ApplicationController
   before_action :set_persona, only: [:show, :edit, :update, :destroy]
-   layout "limpio", only: [:listado,:totales]
+   layout "limpio", only: [:listado,:totales ]
   # GET /personas
   # GET /personas.json
 

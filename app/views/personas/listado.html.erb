@@ -3,6 +3,7 @@
 <center><h3>Listado de Ayudas Corazon Adentro</h3></center>
 <br />
 <br />
+<small>
 <table class="table table-striped">
 	<thead>
 			<th>#</th>
@@ -21,7 +22,7 @@
   <% if !item.nombre1.blank?%>
 	<tr>
 	    <td><%=@i=@i+1%></td>
-		<td><%=item.nombre1.capitalize+' '+item.nombre2.capitalize+' '+item.apellido1.capitalize+' '+item.apellido2.capitalize%></td>
+		<td><%=item.nombre1.capitalize+' '+item.apellido1.capitalize%></td>
 		<td><%=item.cedula%></td>
 		<td><%=item.municipio%></td>
 		<td><%=item.telefono1 %></td>
@@ -30,7 +31,7 @@
 		<% if !item.conclusions.blank? %>
 		<td>
 		  <% for item in item.conclusions %>
-		    		<%= item.solicitud %>  <%= "- #{item.estado}"  if !item.estado.blank? %> <br />
+		    		<%= item.solicitud %>  <%#= "- #{item.estado}"  if !item.estado.blank? %> <br />
 		  <% end %>
     	</td>
 		<% end -%>
@@ -51,3 +52,4 @@
 
 
 
+</small>
