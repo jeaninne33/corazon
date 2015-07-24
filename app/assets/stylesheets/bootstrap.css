@@ -182,6 +182,8 @@ optgroup {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+          font-size: 90%;
+
 }
 td,
 th {
@@ -223,7 +225,7 @@ th {
   }
   tr,
   img {
-    page-break-inside: avoid;
+    page-break-before: always;
   }
   img {
     max-width: 100% !important;

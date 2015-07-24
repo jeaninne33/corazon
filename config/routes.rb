@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :personas
   get 'personas/:id/listado' => 'personas#listado'
   get 'personas/:id/totales' => 'personas#totales'
-
+  get 'personas/:id/totales_municipio' => 'personas#totales_municipio'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
