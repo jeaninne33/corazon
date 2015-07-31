@@ -11,129 +11,140 @@ class PersonasController < ApplicationController
   end
 
 
+
+
+
+"SELECT  `personas` . * FROM  `personas` INNER JOIN  `conclusions` ON  `conclusions`.`persona_id` =  `personas`.`id` WHERE (conclusions.fecha BETWEEN  '2015-07-21' AND  '2015-07-31' ) GROUP BY personas.municipio, personas.parroquia, conclusions.solicitud"
+
+
+
 def totales_municipio
-@arismendi_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Beca Universitaria'").count
-@arismendi_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Econ. Discapacidad'").count
-@arismendi_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Operacion'").count
-@arismendi_total_estudio_especializado = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Estudio Especializado'").count
-@arismendi_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Medicinas'").count
-@arismendi_total_silla_ruedas = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Silla de Ruedas'").count
-@arismendi_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Andadera'").count
-@arismendi_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Baston'").count
-@arismendi_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Botas Ortopedicas'").count
-@arismendi_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Cama'").count
-@arismendi_total_cama_clinica = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Cama Clinica'").count
-@arismendi_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Colchon'").count
-@arismendi_total_colchon_clinico = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Colchon Clinico'").count
-@arismendi_total_colchon_anti = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Colchon Antiescaras'").count
-@arismendi_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Lavadora'").count
-@arismendi_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Cocina'").count
-@arismendi_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Nevera'").count
-@arismendi_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Freezer'").count
-@arismendi_total_hijos_vzla = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Hijos de Vzla'").count
-@arismendi_total_amor_mayor = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Amor Mayor'").count
-@arismendi_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Vivienda'").count
-@arismendi_total_kit_construccion = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Kit de material de construccion'").count
-@arismendi_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Techo'").count
-@arismendi_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Tanque'").count
-@arismendi_total_maquina_coser = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Maquina de Coser'").count
-@arismendi_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Uniformes'").count
-@arismendi_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Kit deportivo'").count
-@arismendi_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Pasaje(s)'").count
+
+@total_municipuio= Persona.joins(:conclusions).group("personas.municipio, personas.parroquia, conclusions.solicitud").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-27','2015-07-31').count
 
 
-
-@marino_total_becas_e = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Beca Educacion'").count
-@marino_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Beca Universitaria'").count
-@marino_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Econ. Discapacidad'").count
-@marino_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Operacion'").count
-@marino_total_estudio_especializado =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Estudio Especializado'").count
-@marino_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Medicinas'").count
-@marino_total_silla_ruedas =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Silla de Ruedas'").count
-@marino_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Andadera'").count
-@marino_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Baston'").count
-@marino_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Botas Ortopedicas'").count
-@marino_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Cama'").count
-@marino_total_cama_clinica =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Cama Clinica'").count
-@marino_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Colchon'").count
-@marino_total_colchon_clinico =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Colchon Clinico'").count
-@marino_total_colchon_anti= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Colchon Antiescaras'").count
-@marino_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Lavadora'").count
-@marino_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Cocina'").count
-@marino_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Nevera'").count
-@marino_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Freezer'").count
-@marino_total_hijos_vzla= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Hijos de Vzla'").count
-@marino_total_amor_mayor= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Amor Mayor'").count
-@marino_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Vivienda'").count
-@marino_total_kit_construccion= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Kit de material de construccion'").count
-@marino_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Techo'").count
-@marino_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Tanque'").count
-@marino_total_maquina_coser = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Maquina de Coser'").count
-@marino_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Uniformes'").count
-@marino_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Kit deportivo'").count
-@marino_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Pasaje(s)'").count
-
-
-@maneiro_total_becas_e =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Beca Educacion'").count
-@maneiro_total_becas_u =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Beca Universitaria'").count
-@maneiro_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Econ. Discapacidad'").count
-@maneiro_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Operacion'").count
-@maneiro_total_estudio_especializado = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Estudio Especializado'").count
-@maneiro_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Medicinas'").count
-@maneiro_total_silla_ruedas = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Silla de Ruedas'").count
-@maneiro_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Andadera'").count
-@maneiro_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Baston'").count
-@maneiro_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Botas Ortopedicas'").count
-@maneiro_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Cama'").count
-@maneiro_total_cama_clinica= Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Cama Clinica'").count
-@maneiro_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Colchon'").count
-@maneiro_total_colchon_clinico =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Colchon Clinico'").count
-@maneiro_total_colchon_anti= Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Colchon Antiescaras'").count
-@maneiro_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Lavadora'").count
-@maneiro_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Cocina'").count
-@maneiro_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Nevera'").count
-@maneiro_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Freezer'").count
-@maneiro_total_hijos_vzla =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Hijos de Vzla'").count
-@maneiro_total_amor_mayor= Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Amor Mayor'").count
-@maneiro_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Vivienda'").count
-@maneiro_total_kit_construccion =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Kit de material de construccion'").count
-@maneiro_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Techo'").count
-@maneiro_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Tanque'").count
-@maneiro_total_maquina_coser =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Maquina de Coser'").count
-@maneiro_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Uniformes'").count
-@maneiro_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Kit deportivo'").count
-@maneiro_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Pasaje(s)'").count
-
-
-@garcia_total_becas_e = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Beca Educacion'").count
-@garcia_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Beca Universitaria'").count
-@garcia_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Econ. Discapacidad'").count
-@garcia_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Operacion'").count
-@garcia_total_estudio_especializado = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Estudio Especializado'").count
-@garcia_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Medicinas'").count
-@garcia_total_silla_ruedas = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Silla de Ruedas'").count
-@garcia_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Andadera'").count
-@garcia_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Baston'").count
-@garcia_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Botas Ortopedicas'").count
-@garcia_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Cama'").count
-@garcia_total_cama_clinica = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Cama Clinica'").count
-@garcia_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Colchon'").count
-@garcia_total_colchon_clinico = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Colchon Clinico'").count
-@garcia_total_colchon_anti = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Colchon Antiescaras'").count
-@garcia_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Lavadora'").count
-@garcia_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Cocina'").count
-@garcia_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Nevera'").count
-@garcia_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Freezer'").count
-@garcia_total_hijos_vzla = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Hijos de Vzla'").count
-@garcia_total_amor_mayor = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Amor Mayor'").count
-@garcia_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Vivienda'").count
-@garcia_total_kit_construccion = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Kit de material de construccion'").count
-@garcia_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Techo'").count
-@garcia_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Tanque'").count
-@garcia_total_maquina_coser = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Maquina de Coser'").count
-@garcia_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Uniformes'").count
-@garcia_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Kit deportivo'").count
-@garcia_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Pasaje(s)'").count
+#@arismendi_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Beca Universitaria'").count
+#@arismendi_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Econ. Discapacidad'").count
+#@arismendi_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Operacion'").count
+#@arismendi_total_estudio_especializado = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Estudio Especializado'").count
+#@arismendi_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Medicinas'").count
+#@arismendi_total_silla_ruedas = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Silla de Ruedas'").count
+#@arismendi_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Andadera'").count
+#@arismendi_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Baston'").count
+#@arismendi_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Botas Ortopedicas'").count
+#@arismendi_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Cama'").count
+#@arismendi_total_cama_clinica = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Cama Clinica'").count
+#@arismendi_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Colchon'").count
+#@arismendi_total_colchon_clinico = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Colchon Clinico'").count
+#@arismendi_total_colchon_anti = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Colchon Antiescaras'").count
+#@arismendi_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Lavadora'").count
+#@arismendi_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Cocina'").count
+#@arismendi_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Nevera'").count
+#@arismendi_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Freezer'").count
+#@arismendi_total_hijos_vzla = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Hijos de Vzla'").count
+#@arismendi_total_amor_mayor = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Amor Mayor'").count
+#@arismendi_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Vivienda'").count
+#@arismendi_total_kit_construccion = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Kit de material de construccion'").count
+#@arismendi_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Techo'").count
+#@arismendi_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Tanque'").count
+#@arismendi_total_maquina_coser = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Maquina de Coser'").count
+#@arismendi_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Uniformes'").count
+#@arismendi_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Kit deportivo'").count
+#@arismendi_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Pasaje(s)'").count
+#
+#
+#
+#@marino_total_becas_e = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Beca Educacion'").count
+#@marino_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Beca Universitaria'").count
+#@marino_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Econ. Discapacidad'").count
+#@marino_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Operacion'").count
+#@marino_total_estudio_especializado =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Estudio Especializado'").count
+#@marino_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Medicinas'").count
+#@marino_total_silla_ruedas =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Silla de Ruedas'").count
+#@marino_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Andadera'").count
+#@marino_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Baston'").count
+#@marino_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Botas Ortopedicas'").count
+#@marino_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Cama'").count
+#@marino_total_cama_clinica =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Cama Clinica'").count
+#@marino_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Colchon'").count
+#@marino_total_colchon_clinico =Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Colchon Clinico'").count
+#@marino_total_colchon_anti= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Colchon Antiescaras'").count
+#@marino_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Lavadora'").count
+#@marino_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Cocina'").count
+#@marino_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Nevera'").count
+#@marino_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Freezer'").count
+#@marino_total_hijos_vzla= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Hijos de Vzla'").count
+#@marino_total_amor_mayor= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Amor Mayor'").count
+#@marino_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Vivienda'").count
+#@marino_total_kit_construccion= Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Kit de material de construccion'").count
+#@marino_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Techo'").count
+#@marino_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Tanque'").count
+#@marino_total_maquina_coser = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Maquina de Coser'").count
+#@marino_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Uniformes'").count
+#@marino_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Kit deportivo'").count
+#@marino_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Mariño' and conclusions.solicitud ='Pasaje(s)'").count
+#
+#
+#@maneiro_total_becas_e =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Beca Educacion'").count
+#@maneiro_total_becas_u =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Beca Universitaria'").count
+#@maneiro_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Econ. Discapacidad'").count
+#@maneiro_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Operacion'").count
+#@maneiro_total_estudio_especializado = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Estudio Especializado'").count
+#@maneiro_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Medicinas'").count
+#@maneiro_total_silla_ruedas = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Silla de Ruedas'").count
+#@maneiro_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Andadera'").count
+#@maneiro_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Baston'").count
+#@maneiro_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Botas Ortopedicas'").count
+#@maneiro_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Cama'").count
+#@maneiro_total_cama_clinica= Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Cama Clinica'").count
+#@maneiro_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Colchon'").count
+#@maneiro_total_colchon_clinico =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Colchon Clinico'").count
+#@maneiro_total_colchon_anti= Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Colchon Antiescaras'").count
+#@maneiro_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Lavadora'").count
+#@maneiro_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Cocina'").count
+#@maneiro_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Nevera'").count
+#@maneiro_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Freezer'").count
+#@maneiro_total_hijos_vzla =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Hijos de Vzla'").count
+#@maneiro_total_amor_mayor= Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Amor Mayor'").count
+#@maneiro_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Vivienda'").count
+#@maneiro_total_kit_construccion =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Kit de material de construccion'").count
+#@maneiro_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Techo'").count
+#@maneiro_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Tanque'").count
+#@maneiro_total_maquina_coser =Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Maquina de Coser'").count
+#@maneiro_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Uniformes'").count
+#@maneiro_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Kit deportivo'").count
+#@maneiro_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Maneiro' and conclusions.solicitud ='Pasaje(s)'").count
+#
+#
+#@garcia_total_becas_e = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Beca Educacion'").count
+#@garcia_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Beca Universitaria'").count
+#@garcia_total_discapacidad = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Econ. Discapacidad'").count
+#@garcia_total_operacion = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Operacion'").count
+#@garcia_total_estudio_especializado = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Estudio Especializado'").count
+#@garcia_total_medicinas = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Medicinas'").count
+#@garcia_total_silla_ruedas = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Silla de Ruedas'").count
+#@garcia_total_andadera = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Andadera'").count
+#@garcia_total_baston = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Baston'").count
+#@garcia_total_botas_ortopedicas = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Botas Ortopedicas'").count
+#@garcia_total_cama = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Cama'").count
+#@garcia_total_cama_clinica = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Cama Clinica'").count
+#@garcia_total_colchon = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Colchon'").count
+#@garcia_total_colchon_clinico = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Colchon Clinico'").count
+#@garcia_total_colchon_anti = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Colchon Antiescaras'").count
+#@garcia_total_lavadora = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Lavadora'").count
+#@garcia_total_cocina = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Cocina'").count
+#@garcia_total_nevera = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Nevera'").count
+#@garcia_total_freezer = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Freezer'").count
+#@garcia_total_hijos_vzla = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Hijos de Vzla'").count
+#@garcia_total_amor_mayor = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Amor Mayor'").count
+#@garcia_total_vivienda = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Vivienda'").count
+#@garcia_total_kit_construccion = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Kit de material de construccion'").count
+#@garcia_total_techo = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Techo'").count
+#@garcia_total_tanque = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Tanque'").count
+#@garcia_total_maquina_coser = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Maquina de Coser'").count
+#@garcia_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Uniformes'").count
+#@garcia_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Kit deportivo'").count
+#@garcia_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Pasaje(s)'").count
 
 
 end

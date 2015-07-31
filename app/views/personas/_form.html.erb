@@ -123,7 +123,7 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            Nombre de la empresa<%= economy.input :empresa ,label: false, :placeholder=>"Nombre de la Empresa" %>
+                            Nombre de la empresa u Oficio<%= economy.input :empresa ,label: false, :placeholder=>"Nombre de la Empresa u Oficio" %>
                         </div>
                         <div class="col-md-3">
                             Sector <%= economy.input :sector, collection: ['Publico','Privado'], label: false, :placeholder=>"Sector", prompt: "Seleccione un sector"%>
@@ -212,11 +212,14 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                          Descripcion<%= economy.input :descripcion ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Descripcion'%>
+                          Descripcion<%= economy.input :descripcion ,label: false, :placeholder=>"Descripcion de la iVsita" , prompt: 'Descripcion'%>
 
                         </div>
                         <div class="col-md-3">
-                          Pobreza Extrema <%= economy.input :pobreza_extrema, collection: ['si','no'],as: :radio_buttons, label: false%>
+                          Pobreza Extrema <%= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
+
+
+
                         </div>
 
 
