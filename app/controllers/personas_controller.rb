@@ -20,7 +20,7 @@ class PersonasController < ApplicationController
 
 def totales_municipio
 
-@total_municipuio= Persona.joins(:conclusions).group("personas.municipio, personas.parroquia, conclusions.solicitud").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-27','2015-07-31').count
+@total_municipio= Persona.joins(:conclusions).group("personas.municipio, personas.parroquia, conclusions.solicitud").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-27','2015-07-31').count
 
 
 #@arismendi_total_becas_u = Persona.joins(:conclusions).where("personas.municipio= 'Arismendi' and conclusions.solicitud ='Beca Universitaria'").count
@@ -156,36 +156,36 @@ end
   def totales
   
 
-  @beca_educacion = Conclusion.where(:solicitud=> "Beca Educacion").count
-  @beca_universitaria = Conclusion.where(:solicitud=> "Beca Universitaria").count
-  @econ_Discapacidad= Conclusion.where(:solicitud=> "Econ. Discapacidad").count
-  @operacion= Conclusion.where(:solicitud=> "Operacion").count
-  @estudio_especializado= Conclusion.where(:solicitud=> "Estudio Especializado").count
-  @medicinas= Conclusion.where(:solicitud=> "Medicinas").count
-  @silla_de_ruedas=Conclusion.where(:solicitud=> "Silla de Ruedas").count
-  @andadera=Conclusion.where(:solicitud=> "Andadera").count
-  @baston=Conclusion.where(:solicitud=> "Baston").count
-  @botas_ortopedicas=Conclusion.where(:solicitud=> "Botas Ortopedicas").count
-  @protesis=Conclusion.where(:solicitud=> "Protesis").count
-  @cama=Conclusion.where(:solicitud=> "Cama").count
-  @cama_clinica=Conclusion.where(:solicitud=> "Cama Clinica").count
-  @colchon=Conclusion.where(:solicitud=> "Colchon").count
-  @colchon_clinico=Conclusion.where(:solicitud=> "Colchon Clinico").count
-  @colchon_antiescaras=Conclusion.where(:solicitud=> "Colchon Antiescaras").count
-  @lavadora=Conclusion.where(:solicitud=> "Lavadora").count
-  @cocina=Conclusion.where(:solicitud=> "Cocina ").count
-  @nevera=Conclusion.where(:solicitud=> "Nevera ").count
-  @freezer=Conclusion.where(:solicitud=> "Freezer").count
-  @hijos_de_vzla=Conclusion.where(:solicitud=> "Hijos de Vzla  ").count
-  @amor_mayor=Conclusion.where(:solicitud=> "Amor Mayor").count
-  @vivienda=Conclusion.where(:solicitud=> "Vivienda").count
-  @kit_construccion=Conclusion.where(:solicitud=> "Kit de material de construccion").count
-  @techo=Conclusion.where(:solicitud=> "Techo").count
-  @tanque=Conclusion.where(:solicitud=> "Tanque").count
-  @maquina_coser=Conclusion.where(:solicitud=> "Maquina de Coser").count
-  @uniformes=Conclusion.where(:solicitud=> "Uniformes").count
-  @kit_deportivo=Conclusion.where(:solicitud=> "Kit deportivo").count
-  @pasajes=Conclusion.where(:solicitud=> "Pasaje(s)").count
+  @beca_educacion = Conclusion.where(:solicitud=> "Beca Educacion").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @beca_universitaria = Conclusion.where(:solicitud=> "Beca Universitaria").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @econ_Discapacidad= Conclusion.where(:solicitud=> "Econ. Discapacidad").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @operacion= Conclusion.where(:solicitud=> "Operacion").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @estudio_especializado= Conclusion.where(:solicitud=> "Estudio Especializado").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @medicinas= Conclusion.where(:solicitud=> "Medicinas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @silla_de_ruedas=Conclusion.where(:solicitud=> "Silla de Ruedas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @andadera=Conclusion.where(:solicitud=> "Andadera").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @baston=Conclusion.where(:solicitud=> "Baston").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @botas_ortopedicas=Conclusion.where(:solicitud=> "Botas Ortopedicas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @protesis=Conclusion.where(:solicitud=> "Protesis")..where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @cama=Conclusion.where(:solicitud=> "Cama").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @cama_clinica=Conclusion.where(:solicitud=> "Cama Clinica").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @colchon=Conclusion.where(:solicitud=> "Colchon").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @colchon_clinico=Conclusion.where(:solicitud=> "Colchon Clinico").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @colchon_antiescaras=Conclusion.where(:solicitud=> "Colchon Antiescaras").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @lavadora=Conclusion.where(:solicitud=> "Lavadora").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @cocina=Conclusion.where(:solicitud=> "Cocina ").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @nevera=Conclusion.where(:solicitud=> "Nevera ").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @freezer=Conclusion.where(:solicitud=> "Freezer").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @hijos_de_vzla=Conclusion.where(:solicitud=> "Hijos de Vzla  ").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @amor_mayor=Conclusion.where(:solicitud=> "Amor Mayor").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @vivienda=Conclusion.where(:solicitud=> "Vivienda").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @kit_construccion=Conclusion.where(:solicitud=> "Kit de material de construccion").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @techo=Conclusion.where(:solicitud=> "Techo").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @tanque=Conclusion.where(:solicitud=> "Tanque").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @maquina_coser=Conclusion.where(:solicitud=> "Maquina de Coser").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @uniformes=Conclusion.where(:solicitud=> "Uniformes").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @kit_deportivo=Conclusion.where(:solicitud=> "Kit deportivo").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @pasajes=Conclusion.where(:solicitud=> "Pasaje(s)").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
 
 @totales = @beca_educacion+@beca_universitaria+@econ_Discapacidad+@operacion+@estudio_especializado+@medicinas+@silla_de_ruedas+@andadera+@baston+@botas_ortopedicas+@protesis+@cama+@cama_clinica+@colchon+@colchon_clinico+@colchon_antiescaras+@lavadora+@cocina+@nevera+@freezer+@hijos_de_vzla+@amor_mayor+@vivienda+@kit_construccion+@techo+@tanque+@maquina_coser+@uniformes+@kit_deportivo+@pasajes
 
