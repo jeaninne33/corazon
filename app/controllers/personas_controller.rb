@@ -166,7 +166,7 @@ end
   @andadera=Conclusion.where(:solicitud=> "Andadera").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
   @baston=Conclusion.where(:solicitud=> "Baston").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
   @botas_ortopedicas=Conclusion.where(:solicitud=> "Botas Ortopedicas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @protesis=Conclusion.where(:solicitud=> "Protesis")..where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+  @protesis=Conclusion.where(:solicitud=> "Protesis").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
   @cama=Conclusion.where(:solicitud=> "Cama").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
   @cama_clinica=Conclusion.where(:solicitud=> "Cama Clinica").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
   @colchon=Conclusion.where(:solicitud=> "Colchon").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
