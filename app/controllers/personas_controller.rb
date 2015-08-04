@@ -19,7 +19,8 @@ class PersonasController < ApplicationController
 
 
 def totales_municipio
-
+@fecha_inicio = params[:fecha_inicio]
+@fecha_fin = params[:fecha_fin]
 @total_municipio= Persona.joins(:conclusions).group("personas.municipio, personas.parroquia, conclusions.solicitud").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-27','2015-07-31').count
 
 
@@ -204,7 +205,7 @@ end
   def new
     @persona = Persona.new
     @persona.build_economy
-   3.times { @persona.conclusions.build  }
+    @persona.conclusions.build  if @persona.conclusions.empty?
 
   end
 
@@ -261,7 +262,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def persona_params
-      params.require(:persona).permit(:nombre1, :nombre2, :apellido1, :apellido2, :cedula, :direccion, :referencia, :municipio, :parroquia, :telefono1, :telefono2,  economy_attributes: [:sector,:empresa,:ingreso_familiar,:tipo_casa,:condiciones_de_vivienda,:persona_hab,:cant_hijos,:enceres_compartidos,:adultos_mayores,:discapacitados,:enfermos,:pobreza_extrema, :descripcion],conclusions_attributes: [:solicitud,:estado,:fecha,:_destroy])
+      params.require(:persona).permit(:nombre1, :nombre2, :apellido1, :apellido2, :cedula, :direccion, :referencia, :municipio, :parroquia, :telefono1, :telefono2,  economy_attributes: [:sector,:empresa,:ingreso_familiar,:tipo_casa,:condiciones_de_vivienda,:persona_hab,:cant_hijos,:enceres_compartidos,:adultos_mayores,:discapacitados,:enfermos,:pobreza_extrema, :descripcion],conclusions_attributes: [:id, :solicitud,:estado,:fecha,:_destroy])
 
     end
 end
