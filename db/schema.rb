@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721191258) do
+ActiveRecord::Schema.define(version: 20150805210354) do
 
   create_table "ayudas", force: :cascade do |t|
-    t.string   "nombre",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "nombre",         limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "institution_id", limit: 4
   end
+
+  add_index "ayudas", ["institution_id"], name: "index_ayudas_on_institution_id", using: :btree
 
   create_table "conclusions", force: :cascade do |t|
     t.string   "estado",     limit: 255
@@ -47,6 +50,18 @@ ActiveRecord::Schema.define(version: 20150721191258) do
     t.text     "descripcion",             limit: 65535
   end
 
+  create_table "institucions", force: :cascade do |t|
+    t.string   "nombre",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string   "nombre",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "personas", force: :cascade do |t|
     t.string   "nombre1",    limit: 255
     t.string   "nombre2",    limit: 255
@@ -63,4 +78,5 @@ ActiveRecord::Schema.define(version: 20150721191258) do
     t.datetime "updated_at",               null: false
   end
 
+  add_foreign_key "ayudas", "institutions"
 end
