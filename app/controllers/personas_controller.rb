@@ -14,7 +14,7 @@ class PersonasController < ApplicationController
 
 
 
-"SELECT  `personas` . * FROM  `personas` INNER JOIN  `conclusions` ON  `conclusions`.`persona_id` =  `personas`.`id` WHERE (conclusions.fecha BETWEEN  '2015-07-21' AND  '2015-07-31' ) GROUP BY personas.municipio, personas.parroquia, conclusions.solicitud"
+#"SELECT  `personas` . * FROM  `personas` INNER JOIN  `conclusions` ON  `conclusions`.`persona_id` =  `personas`.`id` WHERE (conclusions.fecha BETWEEN  '2015-07-21' AND  '2015-07-31' ) GROUP BY personas.municipio, personas.parroquia, conclusions.solicitud"
 
 
 
