@@ -1,27 +1,80 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Ayudas</h1>
+<script type="text/javascript">
 
-<table>
+$(document).ready(function() {
+
+});
+
+</script>
+
+
+
+
+<h1>Listado de Ayudas</h1>
+<%= link_to 'Nueva Ayuda', new_ayuda_path %>
+<table class="table" id ="example1" >
   <thead>
     <tr>
+      <th>id</th>
       <th>Nombre</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @ayudas.each do |ayuda| %>
       <tr>
+	<td><%= ayuda.id %></td>
         <td><%= ayuda.nombre %></td>
-        <td><%= link_to 'Show', ayuda %></td>
-        <td><%= link_to 'Edit', edit_ayuda_path(ayuda) %></td>
-        <td><%= link_to 'Destroy', ayuda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td class="text-right">
+
+        <div class="dropdown open">
+            <a href="javascript:;" title="" class="btn medium bg-orange" data-toggle="dropdown">
+                <span class="button-content">
+                    <i class="glyph-icon font-size-11 icon-cog"></i>
+                    <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                </span>
+            </a>
+            <ul class="dropdown-menu float-right">
+			  <li>
+                <%= link_to  ayuda  do %>
+                 <i class="glyph-icon icon-download mrg5R"></i> Mostrar
+                <% end -%>
+              </li>
+              <li>
+                 <%= link_to edit_ayuda_path(ayuda) do%>
+                   <i class="glyph-icon icon-edit mrg5R"></i> Editar
+                 <% end -%>
+              </li>
+              <li class="divider"></li>
+              <li>
+                 <%= link_to  ayuda, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                    <i class="glyph-icon icon-remove mrg5R"></i>Borrar
+                    <% end -%>
+              </li>
+            </ul>
+        </div>
+
+	</td>
+
+
       </tr>
     <% end %>
   </tbody>
+	<tfoot>
+		<tr>
+			<th>ID</th>
+			<th>Ayuda</th>
+			<th></th>
+		</tr>
+	</tfoot>
+
 </table>
 
 <br>
 
 <%= link_to 'New Ayuda', new_ayuda_path %>
+
+
+
