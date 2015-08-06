@@ -69,6 +69,6 @@ class AyudasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ayuda_params
-      params.require(:ayuda).permit(:nombre)
+      params.require(:ayuda).permit(:nombre, :institution_id)
     end
 end

@@ -1,11 +1,17 @@
-<%= simple_form_for(@ayuda) do |f| %>
+
+<%= simple_form_for @ayuda, :html=> { class: 'form-horizontal' }  do |f| %>
+
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :nombre %>
   </div>
+  <div class="form-inputs">
+  	<%= f.association :institution, :label_method => :nombre, :value_method => :id %>
 
+  </div>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
 <% end %>
