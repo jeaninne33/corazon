@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+});
+
+</script>
+
+<h1>Listado de Instituciones</h1>
+
+<%= link_to 'New Institution', new_institution_path %>
+
+<table class="table" id="example1">
+  <thead>
+    <tr>
+      <th>#ID</th>
+      <th>Nombre</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @institutions.each do |institution| %>
+      <tr>
+        <td><%= institution.id %></td>
+        <td><%= institution.nombre %></td>
+  <td class="text-right">
+
+        <div class="dropdown open">
+            <a href="javascript:;" title="" class="btn medium bg-orange" data-toggle="dropdown">
+                <span class="button-content">
+                    <i class="glyph-icon font-size-11 icon-cog"></i>
+                    <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                </span>
+            </a>
+            <ul class="dropdown-menu float-right">
+        <li>
+                <%= link_to  institution  do %>
+                 <i class="glyph-icon icon-download mrg5R"></i> Mostrar
+                <% end -%>
+              </li>
+              <li>
+                 <%= link_to edit_institution_path(institution) do%>
+                   <i class="glyph-icon icon-edit mrg5R"></i> Editar
+                 <% end -%>
+              </li>
+              <li class="divider"></li>
+              <li>
+                 <%= link_to  institution, method: :delete, data: { confirm: 'Are you sure?' } do%>
+                    <i class="glyph-icon icon-remove mrg5R"></i>Borrar
+                    <% end -%>
+              </li>
+            </ul>
+        </div>
+
+  </td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>ID</th>
+      <th>NOMBRE DE LA INSTITUCION</th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+<br>
+

@@ -11,7 +11,7 @@
 
                         </div>
                         <div class="col-md-3">
-                          Estado de solicitud <%= f.input :estado, collection: ['Requerida','En Estudio', 'No requerida'], label: false,  prompt: 'Seleccione el Estado'%>
+                          Estado de solicitud <%= f.input :estado, collection: ['Requerida','En Estudio', 'No requerida', 'Urgente'], label: false,  prompt: 'Seleccione el Estado'%>
                         </div>
                         <div class="col-md-3">
                           Fecha de solicitud <%= f.input :fecha ,as: :date,start_year: Date.today.year - 0,
