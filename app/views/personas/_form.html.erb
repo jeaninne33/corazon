@@ -112,24 +112,40 @@
                 </div>
             </div>
 
+<h2>Familiares</h2>
+<div id="families">
+         
+
+    <%= f.simple_fields_for :families do |family|%>
+        <%= render 'family_fields', f: family%>
+    <% end %>
+
+    <div class= ".link">
+    <%= link_to_add_association 'Agregar familiar', f, :families %>
+    </div>
+
+</div>
+
+
+
 
 
 <h2>Estudio Socio Economico</h2>
     <%= f.simple_fields_for :economy do |economy| %>
-            <div class="form-row">
+           <!-- <div class="form-row">
                 <div class="form-label col-md-2">
                     <label for="">Informacion Laboral </label>
                 </div>
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            Nombre de la empresa u Oficio<%= economy.input :empresa ,label: false, :placeholder=>"Nombre de la Empresa u Oficio" %>
+                            Nombre de la empresa u Oficio<%#= economy.input :empresa ,label: false, :placeholder=>"Nombre de la Empresa u Oficio" %>
                         </div>
                         <div class="col-md-3">
-                            Sector <%= economy.input :sector, collection: ['Publico','Privado'], label: false, :placeholder=>"Sector", prompt: "Seleccione un sector"%>
+                            Sector <%#= economy.input :sector, collection: ['Publico','Privado'], label: false, :placeholder=>"Sector", prompt: "Seleccione un sector"%>
                         </div>
                         <div class="col-md-3">
-                           Ingreso Familiar <%= economy.input :ingreso_familiar ,label: false, :placeholder=>"Ingreso Familiar en Bs." %>
+                           Ingreso Familiar <%#= economy.input :ingreso_familiar ,label: false, :placeholder=>"Ingreso Familiar en Bs." %>
                         </div>
 
 
@@ -145,13 +161,13 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                            Tipo de vivienda<%= economy.input :tipo_casa, collection: ['Propia','Alquilada','Refugio Temporal'] ,label: false, prompt: "Tipo de Casa" %>
+                            Tipo de vivienda<%#= economy.input :tipo_casa, collection: ['Propia','Alquilada','Refugio Temporal'] ,label: false, prompt: "Tipo de Casa" %>
                         </div>
                         <div class="col-md-3">
-                          Condiciones de la Vivienda <%= economy.input :condiciones_de_vivienda, collection: ['Excelente','Buena','Regular','Mala'], label: false, :placeholder=>"Condiciones de la vivienda", prompt: "Seleccione una condicion"%>
+                          Condiciones de la Vivienda <%#= economy.input :condiciones_de_vivienda, collection: ['Excelente','Buena','Regular','Mala'], label: false, :placeholder=>"Condiciones de la vivienda", prompt: "Seleccione una condicion"%>
                         </div>
                         <div class="col-md-3">
-                            Personas/hab<%= economy.input :persona_hab,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas/Hab." , prompt: 'Personas por hab.'%>
+                            Personas/hab<%#= economy.input :persona_hab,collection: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas/Hab." , prompt: 'Personas por hab.'%>
                         </div>
 
 
@@ -159,7 +175,7 @@
                 </div>
             </div>
 
-
+-->
           <div class="form-row">
                 <div class="form-label col-md-2">
                     <label for="">Datos Socioeconomicos </label>
@@ -170,9 +186,10 @@
                           Cantidad de Hijos<%= economy.input :cant_hijos,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Cant. de hijos" , prompt: 'Cant. de Hijos'%>
 
                         </div>
+                        <!-- 
                         <div class="col-md-3">
-                          Enceres Compartidos <%= economy.input :enceres_compartidos, collection: ['si','no'],as: :radio_buttons, label: false, :placeholder=>"Enceres compartidos"%>
-                        </div>
+                          Enceres Compartidos <%#= economy.input :enceres_compartidos, collection: ['si','no'],as: :radio_buttons, label: false, :placeholder=>"Enceres compartidos"%>
+                        </div>-->
                         <div class="col-md-3">
                           Adultos Mayores<%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "Adultos Mayores" %>
 
@@ -195,28 +212,28 @@
                           Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Personas con discapacidad'%>
 
                         </div>
-                        <div class="col-md-3">
-                          Personas Enfermas <%= economy.input :enfermos, collection: ['si','no'],as: :radio_buttons, label: false%>
+                       <!-- <div class="col-md-3">
+                          Personas Enfermas <%#= economy.input :enfermos, collection: ['si','no'],as: :radio_buttons, label: false%>
                         </div>
-
+                        -->
 
                     </div>
                 </div>
             </div>
 
 
-        <div class="form-row">
+ <!--       <div class="form-row">
                 <div class="form-label col-md-2">
                     <label for="">Descripción de la Visita </label>
                 </div>
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                          Descripcion<%= economy.input :descripcion ,label: false, :placeholder=>"Descripcion de la Visita" , prompt: 'Descripcion'%>
+                          Descripcion<%#= economy.input :descripcion ,label: false, :placeholder=>"Descripcion de la Visita" , prompt: 'Descripcion'%>
 
                         </div>
                         <div class="col-md-3">
-                          Pobreza Extrema <%= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
+                          Pobreza Extrema <%#= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
 
 
 
@@ -226,7 +243,7 @@
                     </div>
                 </div>
             </div>
-
+-->
 
     <% end %>
 <hr />

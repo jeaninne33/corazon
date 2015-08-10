@@ -1,0 +1,29 @@
+<div class="nested-fields">
+        <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Familiares </label>
+                </div>
+
+                <div class="form-input col-md-10">
+                    <div class="row">
+                        <div class="col-md-3">
+                          <%= f.input :nombre %>
+
+                        </div>
+                        <div class="col-md-3">
+                         <%= f.input :apellido %>
+                        </div>
+
+                        <div class="col-md-3">
+                         <%= f.input :parentesco, collection: ['Padre','Madre', 'Abuelo(a)', 'Tio(a)','Primo(a)', 'Hijo(a)','Sobrino(a)','Nieto(a)','Esposo(a)', 'Yerno(a)', 'Suegro(a)', 'Cuñado(a)'], label: "Parentesco",  prompt: 'Seleccione el parentesco'%>
+                        </div>
+                       
+
+                    </div>
+                </div>
+
+      <div class="col-md-6">
+        <%= link_to_remove_association "Remover familiar", f   %>
+      </div>
+ </div>
+</div>

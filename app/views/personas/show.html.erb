@@ -15,8 +15,20 @@
     </div>
 </h4>
 
-<div class="divider"></div>
 
+<div class="divider"></div>
+<h4 class="heading-1 clearfix">
+Familiares
+<small>
+<% if !@persona.families.blank?%>
+      <% for item in @persona.families %>
+        <li>    <%= "<strong> - </strong>#{item.nombre.capitalize} #{item.apellido.capitalize}, #{item.parentesco}".html_safe if !item.nombre.blank? %></li>
+
+    <% end %>
+<% end -%>
+</small>
+
+<div class="divider"></div>
 <h4 class="heading-1 clearfix">
 Estudio Socioeconomico
 <small><%= "<strong>Empresa donde trabaja ó Ocupacion: #{@persona.economy.empresa}</strong>".html_safe if !@persona.economy.empresa.blank?  %> 
@@ -66,7 +78,6 @@ Conclusión(es)
   <div class="divider"></div>
 
   <% end %>
-<% else %>
   
 <% end %>
 

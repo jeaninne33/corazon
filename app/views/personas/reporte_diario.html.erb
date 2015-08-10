@@ -1,0 +1,16 @@
+
+
+<%= simple_form_for @search do |f| %>
+
+  <p>
+    <%= f.collection_select :category_id, Category.all, :id, :name, :include_blank => true %>
+  </p>
+  <p>
+    fecha<br />
+    <%= f.text_field :minimum_price, :size => 7 %> -
+    <%= f.text_field :maximum_price, :size => 7 %>
+  </p>
+  <p<>face/p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+

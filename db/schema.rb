@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805210354) do
+ActiveRecord::Schema.define(version: 20150807135747) do
 
   create_table "ayudas", force: :cascade do |t|
     t.string   "nombre",         limit: 255
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20150805210354) do
     t.text     "descripcion",             limit: 65535
   end
 
+  create_table "families", force: :cascade do |t|
+    t.string   "nombre",     limit: 255
+    t.string   "apellido",   limit: 255
+    t.string   "parentesco", limit: 255
+    t.integer  "persona_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "families", ["persona_id"], name: "index_families_on_persona_id", using: :btree
+
   create_table "institucions", force: :cascade do |t|
     t.string   "nombre",     limit: 255
     t.datetime "created_at",             null: false
@@ -79,4 +90,5 @@ ActiveRecord::Schema.define(version: 20150805210354) do
   end
 
   add_foreign_key "ayudas", "institutions"
+  add_foreign_key "families", "personas"
 end
