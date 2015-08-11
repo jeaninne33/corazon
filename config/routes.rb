@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :localities
+
   resources :institutions
 
   resources :ayudas
