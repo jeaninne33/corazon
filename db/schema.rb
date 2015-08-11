@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20150807135747) do
   add_index "ayudas", ["institution_id"], name: "index_ayudas_on_institution_id", using: :btree
 
   create_table "conclusions", force: :cascade do |t|
+    t.string   "solicitud",  limit: 255
     t.string   "estado",     limit: 255
     t.date     "fecha"
     t.integer  "persona_id", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "solicitud",  limit: 255
   end
 
   create_table "economies", force: :cascade do |t|
@@ -60,12 +60,6 @@ ActiveRecord::Schema.define(version: 20150807135747) do
   end
 
   add_index "families", ["persona_id"], name: "index_families_on_persona_id", using: :btree
-
-  create_table "institucions", force: :cascade do |t|
-    t.string   "nombre",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
 
   create_table "institutions", force: :cascade do |t|
     t.string   "nombre",     limit: 255
