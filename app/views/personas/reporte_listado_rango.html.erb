@@ -1,0 +1,77 @@
+ <p style='page-break-after:always;'>
+
+ <div align="right"><em>Reporte generado por la Coord. de Informatica y Sistemas el <%=Time.now.strftime("%d/%m/%Y a las %I:%M")%></em></div>
+ <hr />
+
+ <b><%= @texto %></b><br />
+ <% if !@institucion.blank? %>
+ <% if @ins %>
+<b>Institucion: <%= @institucion.last.institution %> </b>
+<br/> <br />
+<% else %>
+<br/>
+<% end %>
+
+<table class="table-striped table-hover table-bordered table-condensed">
+		<tr >
+		<th>#No</th>
+		<th>CEDULA</th>
+		<th>NOMBRE Y APELLIDOS</th>
+		<th>DIRECCION</th>
+		<th>TELEFONO</th>
+		<th>AYUDA (ESTADO)</th>
+    <%   if @ban2==true  %>
+    <th>SECTOR</th>
+    <% end %>
+    <%   if @ban1==true  %>
+    <th>FECHA</th>
+    <% end %>
+  <%   if @ban==true  %>
+  <th>Municipio </th>
+<% end %>
+
+	</tr>
+
+
+	<% if !@institucion.blank?  %>
+	<% @institucion.each_with_index do |item, index|%>
+		    	<tr>
+		    				<th><%= index+1 %></th>
+  							<th><%=item.cedula %></th>
+							<th><%=item.nombres.capitalize%></th>
+							<th><%=item.direccion.capitalize%></th>
+							<th><%=item.telefono1%></th>
+              <th>
+              <%#=item.ayuditas %> <%#=item.estado %>
+              <% if !@listado_ayudas.blank? %>
+							  <% @listado_ayudas.each_with_index do |ayudas, index1|  %>
+							   <% if ayudas.id == item.id%>
+							  	       	- <%=ayudas.ayuditas%>	(<%=ayudas.estado%>)<br/>
+									<% end -%>
+
+							  <% end %>
+							<% end %>
+
+							</th>
+              <%   if @ban2==true  %>
+              <th><%= item.sector %></th>
+              <% end %>
+              <%   if @ban1==true  %>
+              <th> <%=item.fecha.strftime("%d/%m")%> </th>
+              <% end %>
+              <%   if @ban==true  %>
+                <th> <%= item.municipio%> </th>
+              <% end %>
+
+				</tr>
+		  <% end %>
+	<%end %>
+
+
+
+</table>
+<%else%>
+<br/>
+  <strong><b>No existen resultados para esa consulta </b></strong>
+<% end %>
+</p> 

@@ -1,11 +1,41 @@
-<%= simple_form_for(@institution) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :nombre %>
-  </div>
+<%= simple_form_for @institution, :html=> { class: 'form-horizontal' }  do |f| %>
+<% if @institution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@institution.errors.count, "Error") %>  Durante la Inserción de la Institución. Revisar:</h2>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+      <ul>
+      <% @institution.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Nombre: </label>
+                    <br />
+                    <label for="">Orden: </label>
+
+                </div>
+                <div class="form-input col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                               <%= f.input :nombre, label: false , :placeholder=>"Nombre de la Institución"%> 
+                               <br />
+                               <%= f.input :orden, label: false , :placeholder=>"Orden" %>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+  <div class="btn primary-bg medium">
+    <%= f.button :submit  %>
   </div>
 <% end %>

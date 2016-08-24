@@ -1,0 +1,78 @@
+
+
+<%= simple_form_for @locality, :html=> { class: 'form-horizontal' }  do |f| %>
+ <% if @locality.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@locality.errors.count, "error") %>  Durante la Inserción de la Localidad. Revisar:</h2>
+        <ul>
+      <% @locality.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+        <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Municipio: </label>
+                </div>
+                <div class="form-input col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                               <%= f.input :municipio, label: false, collection: ['Maneiro','Arismendi', 'Garcia', 'Mariño'],  prompt: 'Seleccione el municipio' %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Sector: </label>
+                </div>
+                <div class="form-input col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                              <%= f.input :sector,  label: false, :placeholder=>'Sector' %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+               <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Fecha:</label>
+                </div>
+                <div class="form-input col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                              <%= f.input :fecha, label: false %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+              <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">Estado:</label>
+                </div>
+                <div class="form-input col-md-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                                <%= f.input :activo, label: 'Activo' %>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+  <div class="btn primary-bg medium">
+    <%= f.button :submit  %>
+  </div>
+<% end %>

@@ -207,3 +207,8 @@ en:
   activerecord:
     errors:
       <<: *errors
+  views:
+    pagination:
+      previous: "&lt; Previo"
+      next: "Proximo &gt;"
+      truncate: "..."

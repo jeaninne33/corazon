@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<br/>
+<h4 class="heading-1 clearfix">
+    <i class="glyph-icon icon-tags heading-icon"></i>
+    <div class="heading-content">
+       <%=  'Datos de la Localidad'%>.
+        <small>
+			       <p>
+			  <strong>Municipio:</strong>
+			  <%= @locality.municipio %>
+			</p>
+
+			<p>
+			  <strong>Sector:</strong>
+			  <%= @locality.sector %>
+			</p>
+
+			<p>
+			  <strong>Fecha:</strong>
+			  <%= @locality.fecha %>
+			</p>
+
+			<p>
+			  <strong>Activo:</strong>
+			  <%= @locality.activo %>
+			</p>
+
+
+
+
+        </small>
+    </div>
+</h4>
+
+
+<%= link_to 'Editar', edit_locality_path(@locality) %> |
+<%= link_to 'Volver', localities_path %>

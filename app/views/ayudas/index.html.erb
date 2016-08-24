@@ -1,24 +1,51 @@
+<div id="page-title">
+
+<h3>
+    Listado de Ayudas
+    <small>
+        Listado de ayudas disponibles en la jornada  <b>Corazon Adentro</b>
+    </small>
+</h3>
+
+</div><!-- #page-title -->
+
+
+
+
+
 <p id="notice"><%= notice %></p>
+<div class="form-row">
+        <div class="form-label col-md-3">
+            <label for="">Agregue un criterio de busqueda
+        </div>
+        <div class="form-input col-md-9">
+            <div class="row">
+                <div class="col-md-3">
+                <%= form_tag(ayudas_path, :method => "get", id: "search-form", :html=> { class: 'form-horizontal' })do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Buscar Ayuda" %>
+                    <%= submit_tag "Buscar" %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script type="text/javascript">
-
-$(document).ready(function() {
-
-});
-
-</script>
 
 
+<%= link_to  new_ayuda_path,:class=> "btn medium bg-blue" do %>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva Ayuda</span>
+<% end -%>
 
+<div class="divider"></div>
 
-<h1>Listado de Ayudas</h1>
-<%= link_to 'Nueva Ayuda', new_ayuda_path %>
-<table class="table" id ="example1" >
+<% if @ayudas.present? %>
+<div class="example-box">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>id</th>
       <th>Nombre</th>
-      <th></th>
+      <th>Opciones</th>
     </tr>
   </thead>
 
@@ -27,35 +54,18 @@ $(document).ready(function() {
       <tr>
 	<td><%= ayuda.id %></td>
         <td><%= ayuda.nombre %></td>
-	<td class="text-right">
+	<td>
+      <%= link_to  ayuda  do %>
+       <i class="glyph-icon icon-download mrg5R"></i> Mostrar
+      <% end -%>
 
-        <div class="dropdown open">
-            <a href="javascript:;" title="" class="btn medium bg-orange" data-toggle="dropdown">
-                <span class="button-content">
-                    <i class="glyph-icon font-size-11 icon-cog"></i>
-                    <i class="glyph-icon font-size-11 icon-chevron-down"></i>
-                </span>
-            </a>
-            <ul class="dropdown-menu float-right">
-			  <li>
-                <%= link_to  ayuda  do %>
-                 <i class="glyph-icon icon-download mrg5R"></i> Mostrar
-                <% end -%>
-              </li>
-              <li>
-                 <%= link_to edit_ayuda_path(ayuda) do%>
-                   <i class="glyph-icon icon-edit mrg5R"></i> Editar
-                 <% end -%>
-              </li>
-              <li class="divider"></li>
-              <li>
-                 <%= link_to  ayuda, method: :delete, data: { confirm: 'Are you sure?' } do%>
-                    <i class="glyph-icon icon-remove mrg5R"></i>Borrar
-                    <% end -%>
-              </li>
-            </ul>
-        </div>
+       <%= link_to edit_ayuda_path(ayuda) do%>
+         <i class="glyph-icon icon-edit mrg5R"></i> Editar
+       <% end -%>
 
+       <%= link_to  ayuda, method: :delete, data: { confirm: 'Are you sure?' } do%>
+          <i class="glyph-icon icon-remove mrg5R"></i>Borrar
+          <% end -%>
 	</td>
 
 
@@ -66,15 +76,19 @@ $(document).ready(function() {
 		<tr>
 			<th>ID</th>
 			<th>Ayuda</th>
-			<th></th>
+		  <th>Opciones</th>
 		</tr>
 	</tfoot>
 
 </table>
+<% else %>
+  <p> no hay ayudas(s) con este criterio de busqueda: <%= params[:search] %>.</p>
 
+<% end -%>
 <br>
 
+<%= paginate @ayudas %>
+
+
+</div>
 <%= link_to 'New Ayuda', new_ayuda_path %>
-
-
-

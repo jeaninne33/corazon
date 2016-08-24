@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reportes/index'
+
   resources :localities
 
   resources :institutions
@@ -6,14 +8,15 @@ Rails.application.routes.draw do
   resources :ayudas
 
   resources :personas
-  get 'personas/:id/listado' => 'personas#listado'
-  get 'personas/:id/totales' => 'personas#totales'
-  get 'personas/:id/totales_municipio' => 'personas#totales_municipio'
+  get 'personas/:id/listado' => 'personas#listado', as: :listado
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  get 'personas/:id/:inst/:muni/:f1/:f2/reporte_municipio' => 'personas#reporte_municipio', as: :reporte_municipio
+  get 'personas/:id/reporte_municipio_listado' => 'personas#reporte_municipio_listado', as: :reporte_municipio_listado
+  get 'personas/:id/:fecha1/:fecha2/reporte_ayuda' => 'personas#reporte_ayuda', as: :reporte_ayuda
+  get 'personas/:fecha1/:fecha2/reporte_totales_sectores' => 'personas#reporte_totales_sectores', as: :reporte_totales_sectores
+  get 'personas/:id/:fecha/reporte_por_institucion' => 'personas#reporte_por_institucion', as: :reporte_por_institucion
+  get 'personas/:id/:muni/:f1/:f2/:sector/:ayuda/reporte_listado_rango' => 'personas#reporte_listado_rango', as: :reporte_listado_rango
 
-  # You can have the root of your site routed with "root"
   root 'personas#index'
 
   # Example of regular route:

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  municipio: MyString
+  sector: MyString
+  fecha: 2015-08-11
+  activo: false
+
+two:
+  municipio: MyString
+  sector: MyString
+  fecha: 2015-08-11
+  activo: false

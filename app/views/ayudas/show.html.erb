@@ -1,9 +1,19 @@
 <p id="notice"><%= notice %></p>
+<br/>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @ayuda.nombre %>
-</p>
+<h4 class="heading-1 clearfix">
+    <i class="glyph-icon icon-tags heading-icon"></i>
+    <div class="heading-content">
+       <%=  'Datos de la Ayuda'%>.
+        <small>
+			<p>
+			  <strong>Nombre:</strong>
+			  <%= @ayuda.nombre %>
+			</p>
+        </small>
+    </div>
+</h4>
 
-<%= link_to 'Edit', edit_ayuda_path(@ayuda) %> |
-<%= link_to 'Back', ayudas_path %>
+
+<%= link_to 'Editar', edit_ayuda_path(@ayuda) %> |
+<%= link_to 'Volver', ayudas_path %>

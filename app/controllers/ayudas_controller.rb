@@ -3,10 +3,17 @@ class AyudasController < ApplicationController
 
   # GET /ayudas
   # GET /ayudas.json
-  def index
-    @ayudas = Ayuda.all
-  end
 
+      def index
+        @ayudas = Ayuda.all.order("nombre ASC").page(params[:page]).per(20)
+          if params[:search]
+            @ayudas = Ayuda.search(params[:search]).order("nombre ASC").page(params[:page]).per(20)
+          else
+            @ayudas = Ayuda.all.order('nombre ASC').page(params[:page]).per(20)
+          end
+
+
+      end
   # GET /ayudas/1
   # GET /ayudas/1.json
   def show
@@ -28,7 +35,7 @@ class AyudasController < ApplicationController
 
     respond_to do |format|
       if @ayuda.save
-        format.html { redirect_to @ayuda, notice: 'Ayuda was successfully created.' }
+        format.html { redirect_to @ayuda, notice: 'La Ayuda ha sido almacenda exitosamente.' }
         format.json { render :show, status: :created, location: @ayuda }
       else
         format.html { render :new }
@@ -42,7 +49,7 @@ class AyudasController < ApplicationController
   def update
     respond_to do |format|
       if @ayuda.update(ayuda_params)
-        format.html { redirect_to @ayuda, notice: 'Ayuda was successfully updated.' }
+        format.html { redirect_to @ayuda, notice: 'La Ayuda ha sido actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @ayuda }
       else
         format.html { render :edit }
@@ -56,7 +63,7 @@ class AyudasController < ApplicationController
   def destroy
     @ayuda.destroy
     respond_to do |format|
-      format.html { redirect_to ayudas_url, notice: 'Ayuda was successfully destroyed.' }
+      format.html { redirect_to ayudas_url, notice: 'La Ayuda ha sido eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +78,6 @@ class AyudasController < ApplicationController
     def ayuda_params
       params.require(:ayuda).permit(:nombre, :institution_id)
     end
+
+
 end

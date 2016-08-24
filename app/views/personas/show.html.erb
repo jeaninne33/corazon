@@ -6,7 +6,7 @@
        <%=  @persona.nombre1.capitalize+' '+@persona.nombre2.capitalize+' '+@persona.apellido1.capitalize+' '+@persona.apellido2.capitalize%>.
         <small>
         <strong>Cedula de Identidad:</strong> <%= @persona.cedula %><br />
-        <strong>Direccion: </strong><%= @persona.direccion.capitalize %>,  <%= @persona.referencia.capitalize %>;  Parroquia <%= @persona.parroquia.capitalize %>, Municipio <%= @persona.municipio.capitalize %>.<br />
+        <strong>Direccion: </strong><%= @persona.direccion.capitalize %>,  <%#= @persona.referencia.capitalize %>.<br />
         <strong>Telefonos :</strong><%= @persona.telefono1 %>   <%= @persona.telefono2 %>
 
 
@@ -69,16 +69,21 @@ Descripcion de la visita
 <h4 class="heading-1 clearfix">
 Conclusión(es)
 <small>
+
 <% if !@persona.conclusions.blank? %>
   <% for item in @persona.conclusions %>
-  <li>    <%= "<strong>Solicitud : </strong>#{item.solicitud}".html_safe if !item.solicitud.blank? %>
+
+  <li> 
+          <%= "<strong>Solicitud : </strong> #{Ayuda.where(:id => item.ayuda_id).pluck(:nombre).first}".html_safe if !item.ayuda_id.blank? %>
           <%= "<strong>Estado de la solicitud : </strong>#{item.estado}".html_safe if !item.estado.blank? %>
           <%= "<strong>Fecha de la solicitud : </strong>#{item.fecha}".html_safe if !item.fecha.blank? %>
   </li>
   <div class="divider"></div>
 
   <% end %>
-  
+  <% else %>
+            <%= "<strong>ESTA PERSONA NO POSEE SOLICITUDES REGISTRADAS</strong>".html_safe %>
+
 <% end %>
 
 
@@ -88,3 +93,8 @@ Conclusión(es)
 
 <%= link_to 'Editar', edit_persona_path(@persona) %> |
 <%= link_to 'Volver', personas_path %>
+<br/>
+<br/>
+<%= link_to  new_persona_path,:class=> "btn medium bg-blue" do %>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva Persona</span>
+<% end -%>

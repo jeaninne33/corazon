@@ -14,15 +14,7 @@
           <script src="assets/js/minified/core/respond.min.js"></script>
         <![endif]-->
 
-
-
-
-
-<<<<<<< HEAD
-  <%= stylesheet_link_tag  'aui-production.min.css','dark-blue.min.css','common.min.css','responsive.min.css' %>
-=======
-  <%= stylesheet_link_tag   :defaults, 'aui-production.min.css','dark-blue.min.css','common.min.css','responsive.min.css', 'font.css', 'font-awesome.min.css' %>
->>>>>>> 4bcaca5d51432f5630b65f58ab52a5fa5175c3f5
+ <%= stylesheet_link_tag  'aui-production.min.css','dark-blue.min.css','common.min.css','responsive.min.css', 'font.css', 'font-awesome.min.css' %>
   <%= javascript_include_tag :application %>
   <%= csrf_meta_tags %>
  
@@ -49,15 +41,18 @@
 
         </script>
 
+            <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        $('#example').DataTable();
+      } );
+    </script>
+
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-    <body style="overflow: hidden;">
+    <body >
         
 
-        <div id="loading" class="ui-front loader ui-widget-overlay bg-white opacity-100">
-             <%=image_tag "loader-dark.gif"%>
-        </div>
 
         <div id="page-wrapper" class="demo-example">
 
@@ -379,55 +374,24 @@
                     <div class="dropdown">
 
                         <a data-toggle="dropdown" href="javascript:;" title="">
-                            <span class="badge badge-absolute bg-blue">8</span>
-                            <i class="glyph-icon icon-lightbulb"></i>
+                            <i class="fa fa-users"></i>
                         </a>
                         <div class="dropdown-menu">
 
                             <div class="small-box">
-                                <div class="popover-title">Boxed layout options</div>
-                                <div class="pad10A clearfix">
-                                    <a class="fluid-layout-btn hidden bg-blue-alt medium btn" href="javascript:;" title=""><span class="button-content">Full width layout</span></a>
-                                    <a class="boxed-layout-btn bg-blue-alt medium btn" href="javascript:;" title=""><span class="button-content">Boxed layout</span></a>
-                                </div>
-                                <div class="popover-title">Boxed backgrounds</div>
-                                <div class="pad10A clearfix">
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#000" style="background: #000;" title=""></a>
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#333" style="background: #333;" title=""></a>
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#666" style="background: #666;" title=""></a>
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#888" style="background: #888;" title=""></a>
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#383d43" style="background: #383d43;" title=""></a>
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#fafafa" style="background: #fafafa; border: #ccc solid 1px;" title=""></a>
-                                    <a href="javascript:;" class="choose-bg" boxed-bg="#fff" style="background: #fff; border: #eee solid 1px;" title=""></a>
-                                </div>
-                                <div class="popover-title">Color schemes</div>
-                                <div class="pad10A clearfix change-layout-theme">
-                                    <p class="font-gray-dark font-size-11 pad0B">More color schemes will be available soon!</p>
-                                    <div class="divider mrg10T mrg10B"></div>
-                                    <a href="javascript:;" class="choose-theme" layout-theme="dark-blue" title="">
-                                        <span style="background: #2381E9;"></span>
-                                    </a>
-                                    <a href="javascript:;" class="choose-theme opacity-30 mrg15R" layout-theme="white-blue" title="">
-                                        <span style="background: #2381E9;"></span>
-                                    </a>
-                                    <a href="javascript:;" class="choose-theme" layout-theme="dark-green" title="D">
-                                        <span style="background: #78CE12;"></span>
-                                    </a>
-                                    <a href="javascript:;" class="choose-theme opacity-30 mrg15R" layout-theme="white-green" title="D">
-                                        <span style="background: #78CE12;"></span>
-                                    </a>
-                                    <a href="javascript:;" class="choose-theme" layout-theme="dark-orange" title="">
-                                        <span style="background: #FF6041;"></span>
-                                    </a>
-                                    <a href="javascript:;" class="choose-theme opacity-30 mrg15R" layout-theme="white-orange" title="">
-                                        <span style="background: #FF6041;"></span>
-                                    </a>
-                                </div>
+                                <div class="popover-title">PERSONAS</div>
+                                <div class="button-pane button-pane-alt text-center">
+                                  <%=link_to new_persona_path,:class=> "btn medium bg-blue" do %>
 
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nuevo Solicitante</span>
+
+                                  <% end -%>
+                                </div>
+                              
                                 <div class="pad10A button-pane button-pane-alt text-center">
-                                    <a href="javascript:;" class="btn medium bg-black">
-                                        <span class="button-content text-transform-upr font-bold font-size-11">View all</span>
-                                    </a>
+                                    <%=link_to personas_path,  :class=> "btn medium bg-black"  do%>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Ver todos</span>
+                                    <% end -%>
                                 </div>
                             </div>
 
@@ -436,137 +400,50 @@
                     <div class="dropdown">
 
                         <a data-toggle="dropdown" href="javascript:;" title="">
-                            <span class="badge badge-absolute bg-orange">4</span>
-                            <i class="glyph-icon icon-envelope-alt"></i>
+                            <i class="fa fa-university"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                                <div class="small-box">
+                                <div class="popover-title">INSTITUCIONES</div>
+                                <div class="button-pane button-pane-alt text-center">
+                                  <%=link_to new_institution_path,:class=> "btn medium bg-blue" do %>
+
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva institucion</span>
+
+                                  <% end -%>
+                                </div>
+                              
+                                <div class="pad10A button-pane button-pane-alt text-center">
+                                    <%=link_to institutions_path,  :class=> "btn medium bg-black"  do%>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Ver todos</span>
+                                    <% end -%>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="dropdown">
+
+                        <a data-toggle="dropdown" href="javascript:;" title="">
+                            <i class="fa fa-plus-square"></i>
                         </a>
                         <div class="dropdown-menu">
 
-                            <div class="scrollable-content medium-box scrollable-small">
+                              <div class="small-box">
+                                <div class="popover-title">AYUDAS</div>
+                                <div class="button-pane button-pane-alt text-center">
+                                  <%=link_to new_ayuda_path,:class=> "btn medium bg-blue" do %>
 
-                                <ul class="no-border messages-box">
-                                    <li>
-                                        <div class="messages-img">
-                      <%=  image_tag "gravatar.jpg", width: "32"%>
-                                        </div>
-                                        <div class="messages-content">
-                                            <div class="messages-title">
-                                                <i class="glyph-icon icon-warning-sign font-red"></i>
-                                                <a href="javascript:;" title="Message title">Important message</a>
-                                                <div class="messages-time">
-                                                    3 hr ago
-                                                    <span class="glyph-icon icon-time"></span>
-                                                </div>
-                                            </div>
-                                            <div class="messages-text">
-                                                This message must be read immediately because of it's high importance...
-                                            </div>
-                                        </div> 
-                                    </li>
-                                    <li>
-                                        <div class="messages-img">
-                      <%=  image_tag "gravatar.jpg", width: "32"%>
-                                        </div>
-                                        <div class="messages-content">
-                                            <div class="messages-title">
-                                                <i class="glyph-icon icon-tag font-blue"></i>
-                                                <a href="javascript:;" title="Message title">Some random email</a>
-                                                <div class="messages-time">
-                                                    3 hr ago
-                                                    <span class="glyph-icon icon-time"></span>
-                                                </div>
-                                            </div>
-                                            <div class="messages-text">
-                                                This message must be read immediately because of it's high importance...
-                                            </div>
-                                        </div> 
-                                    </li>
-                                    <li>
-                                        <div class="messages-img">
-<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
-                                        <div class="messages-content">
-                                            <div class="messages-title">
-                                                <a href="javascript:;" class="font-orange" title="Message title">Another received message</a>
-                                                <div class="messages-time">
-                                                    3 hr ago
-                                                    <span class="glyph-icon icon-time"></span>
-                                                </div>
-                                            </div>
-                                            <div class="messages-text">
-                                                This message must be read immediately because of it's high importance...
-                                            </div>
-                                        </div> 
-                                    </li>
-                                    <li>
-                                        <div class="messages-img">
-<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
-                                        <div class="messages-content">
-                                            <div class="messages-title">
-                                                <i class="glyph-icon icon-warning-sign font-red"></i>
-                                                <a href="javascript:;" title="Message title">Important message</a>
-                                                <div class="messages-time">
-                                                    3 hr ago
-                                                    <span class="glyph-icon icon-time"></span>
-                                                </div>
-                                            </div>
-                                            <div class="messages-text">
-                                                This message must be read immediately because of it's high importance...
-                                            </div>
-                                        </div> 
-                                    </li>
-                                    <li>
-                                        <div class="messages-img">
-<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
-                                        <div class="messages-content">
-                                            <div class="messages-title">
-                                                <i class="glyph-icon icon-tag font-blue"></i>
-                                                <a href="javascript:;" title="Message title">Some random email</a>
-                                                <div class="messages-time">
-                                                    3 hr ago
-                                                    <span class="glyph-icon icon-time"></span>
-                                                </div>
-                                            </div>
-                                            <div class="messages-text">
-                                                This message must be read immediately because of it's high importance...
-                                            </div>
-                                        </div> 
-                                    </li>
-                                    <li>
-                                        <div class="messages-img">
-<%=  image_tag "gravatar.jpg", width: "32"%>                                        </div>
-                                        <div class="messages-content">
-                                            <div class="messages-title">
-                                                <a href="javascript:;" class="font-orange" title="Message title">Another received message</a>
-                                                <div class="messages-time">
-                                                    3 hr ago
-                                                    <span class="glyph-icon icon-time"></span>
-                                                </div>
-                                            </div>
-                                            <div class="messages-text">
-                                                This message must be read immediately because of it's high importance...
-                                            </div>
-                                        </div> 
-                                    </li>
-                                </ul>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva Ayuda</span>
 
-                            </div>
-                            <div class="pad10A button-pane button-pane-alt">
-                                <a href="messaging.html" class="btn small float-left bg-white">
-                                    <span class="button-content text-transform-upr font-size-11">All messages</span>
-                                </a>
-                                <div class="button-group float-right">
-                                    <a href="javascript:;" class="btn small primary-bg">
-                                        <i class="glyph-icon icon-star"></i>
-                                    </a>
-                                    <a href="javascript:;" class="btn small primary-bg">
-                                        <i class="glyph-icon icon-random"></i>
-                                    </a>
-                                    <a href="javascript:;" class="btn small primary-bg">
-                                        <i class="glyph-icon icon-map-marker"></i>
-                                    </a>
+                                  <% end -%>
                                 </div>
-                                <a href="javascript:;" class="small btn bg-red float-right mrg10R tooltip-button" data-placement="left" title="Remove comment">
-                                    <i class="glyph-icon icon-remove"></i>
-                                </a>
+                              
+                                <div class="pad10A button-pane button-pane-alt text-center">
+                                    <%=link_to ayudas_path,  :class=> "btn medium bg-black"  do%>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Ver todas</span>
+                                    <% end -%>
+                                </div>
                             </div>
 
                         </div>
@@ -574,168 +451,25 @@
                     <div class="dropdown">
 
                         <a data-toggle="dropdown" href="javascript:;" title="">
-                            <span class="badge badge-absolute bg-green">9</span>
-                            <i class="glyph-icon icon-bell"></i>
-                        </a>
-                        <div class="dropdown-menu">
-
-                            <div class="popover-title display-block clearfix form-row pad10A">
-                                <div class="form-input">
-                                    <div class="form-input-icon">
-                                        <i class="glyph-icon icon-search transparent"></i>
-                                        <input type="text" placeholder="Search notifications..." class="radius-all-100" name="" id="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="scrollable-content medium-box scrollable-small">
-
-                                <ul class="no-border notifications-box">
-                                    <li>
-                                        <span class="btn bg-purple icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is an error notification</span>
-                                        <div class="notification-time">
-                                            a few seconds ago
-                                            <span class="glyph-icon icon-time"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="btn bg-orange icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is a warning notification</span>
-                                        <div class="notification-time">
-                                            <b>15</b> minutes ago
-                                            <span class="glyph-icon icon-time"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-green btn icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text font-green font-bold">A success message example.</span>
-                                        <div class="notification-time">
-                                            <b>2 hours</b> ago
-                                            <span class="glyph-icon icon-time"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="btn bg-purple icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is an error notification</span>
-                                        <div class="notification-time">
-                                            a few seconds ago
-                                            <span class="glyph-icon icon-time"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="btn bg-orange icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text">This is a warning notification</span>
-                                        <div class="notification-time">
-                                            <b>15</b> minutes ago
-                                            <span class="glyph-icon icon-time"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span class="bg-blue btn icon-notification glyph-icon icon-user"></span>
-                                        <span class="notification-text font-blue">Alternate notification styling.</span>
-                                        <div class="notification-time">
-                                            <b>2 hours</b> ago
-                                            <span class="glyph-icon icon-time"></span>
-                                        </div>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <div class="pad10A button-pane button-pane-alt text-center">
-                                <a href="notifications.html" class="btn medium primary-bg">
-                                    <span class="button-content">View all notifications</span>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="dropdown">
-
-                        <a data-toggle="dropdown" href="javascript:;" title="">
-                            <span class="badge badge-absolute bg-red">2</span>
-                            <i class="glyph-icon icon-tasks"></i>
+                            <i class="fa fa-flag"></i>
                         </a>
                         <div class="dropdown-menu" id="progress-dropdown">
 
-                            <div class="scrollable-content small-box scrollable-small">
+                              <div class="small-box">
+                                <div class="popover-title">LOCALIDADES</div>
+                                <div class="button-pane button-pane-alt text-center">
+                                  <%=link_to new_locality_path,:class=> "btn medium bg-blue" do %>
 
-                                <ul class="no-border progress-box">
-                                    <li>
-                                        <div class="progress-title">
-                                            Finishing uploading files
-                                            <b>23%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="23">
-                                            <div class="progressbar-value bg-blue">
-                                                <div class="progressbar-overlay"></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="progress-title">
-                                            Roadmap progress
-                                            <b>91%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="91">
-                                            <div class="progressbar-value primary-bg">
-                                                <div class="progressbar-overlay"></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="progress-title">
-                                            Images upload
-                                            <b>58%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="58">
-                                            <div class="progressbar-value bg-blue-alt"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="progress-title">
-                                            WordPress migration
-                                            <b>74%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="74">
-                                            <div class="progressbar-value bg-purple"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="progress-title">
-                                            Agile development procedures
-                                            <b>91%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="91">
-                                            <div class="progressbar-value primary-bg">
-                                                <div class="progressbar-overlay"></div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="progress-title">
-                                            Systems integration
-                                            <b>58%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="58">
-                                            <div class="progressbar-value bg-blue-alt"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="progress-title">
-                                            Code optimizations
-                                            <b>97%</b>
-                                        </div>
-                                        <div class="progressbar-small progressbar" data-value="97">
-                                            <div class="progressbar-value bg-yellow"></div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva Localidad</span>
 
-                            </div>
-                            <div class="pad10A button-pane button-pane-alt text-center">
-                                <a href="notifications.html" class="btn medium font-normal bg-green">
-                                    <span class="button-content">View all</span>
-                                </a>
+                                  <% end -%>
+                                </div>
+                              
+                                <div class="pad10A button-pane button-pane-alt text-center">
+                                    <%=link_to localities_path,  :class=> "btn medium bg-black"  do%>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Ver todas</span>
+                                    <% end -%>
+                                </div>
                             </div>
 
                         </div>
@@ -744,395 +478,36 @@
 
             </div><!-- #page-header -->
 
-          <!--  <div id="page-sidebar" class="scrollable-content">
+          <div id="page-sidebar" class="scrollable-content">
 
                 <div id="sidebar-menu">
                     <ul>
-                        <li>
-                            <a href="index.html" title="Dashboard">
-                                <i class="glyph-icon icon-dashboard"></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" title="Components">
-                                <i class="glyph-icon icon-code"></i>
-                                Components
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="dashboard_panels.html" title="Dashboard panels">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Dashboard panels
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="social_boxes.html" title="Social boxes">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Social boxes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="information_boxes.html" title="Information boxes">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Information boxes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="chat.html" title="Chat">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Chat
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html" title="Notifications">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Notifications
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="messaging.html" title="Messaging">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Messaging
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="progress_bars.html" title="Progress">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Progress
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;" title="Pages">
-                                <i class="glyph-icon icon-folder-open"></i>
-                                Pages
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="grid.html" title="Grid Layouts">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Grid Layouts
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="helper_classes.html" title="Helpers">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Helpers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="login.html" title="Login">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Login example 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="login-alt.html" title="Login">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Login example 2
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;" title="Widgets">
-                                <i class="glyph-icon icon-tags"></i>
-                                Widgets
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="tabs.html" title="Tabs">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Tabs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="accordions.html" title="Accordions">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Accordions
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="datepicker.html" title="Datepicker">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Datepicker
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="timepicker.html" title="Timepicker">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Timepicker
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="colorpicker.html" title="Colorpicker">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Colorpicker
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="slider.html" title="Sliders">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Sliders
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="jgrowl_notifications.html" title="JGrowl Notifications">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        JGrowl Notifications
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="noty_notifications.html" title="Noty Notifications">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Noty Notifications
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="modal_windows.html" title="Modal Windows">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Modal Windows
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="tooltips.html" title="Tooltips">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Tooltips
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="popovers.html" title="Popovers">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Popovers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="sortable.html" title="Sortable Elements">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Sortable Elements
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dropdown_menus.html" title="Dropdown Menus">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Dropdown Menus
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:;" title="Elements">
-                                <i class="glyph-icon icon-laptop"></i>
-                                Elements
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="content_boxes.html" title="Content Boxes">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Content Boxes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="response_messages.html" title="Response Messages">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Response Messages
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="badges.html" title="Badges &amp; Labels">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Badges &amp; Labels
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="overlays.html" title="Overlays">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Overlays
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="navigation_menus.html" title="Navigation Menus">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Navigation Menus
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="icons.html" title="Icons">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Icons
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html" title="Buttons">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Buttons
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="pagination.html" title="Pagination">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Pagination
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="typography.html" title="Typography">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Typography
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="animations.html" title="Animations">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Animations
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                       
+               
+                    
                         <li>
                             <a href="javascript:;" title="Charts">
                                 <i class="glyph-icon icon-bar-chart"></i>
-                                Charts
+                                Reporte por Municipio
                             </a>
-                            <ul>
-                                <li>
-                                    <a href="charts_piegauges.html" title="Pie Gauges">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Pie Gauges
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="charts_justgage.html" title="JustGage">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        JustGage
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="charts_sparklines.html" title="Sparklines">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Sparklines
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="charts_morris.html" title="Morris Charts">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Morris Charts
-                                    </a>
-                                </li>
-                            </ul>
+                  
                         </li>
                         <li>
                             <a href="javascript:;" title="Tables">
                                 <i class="glyph-icon icon-table"></i>
-                                Tables
+                                Reportes por ayudas
                             </a>
-                            <ul>
-                                <li>
-                                    <a href="tables.html" title="Normal tables">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Normal tables
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="tables_dynamic.html" title="Dynamic tables">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Dynamic tables
-                                    </a>
-                                </li>
-                            </ul>
+                      
                         </li>
                         <li>
                             <a href="javascript:;" title="Forms">
                                 <i class="glyph-icon icon-reorder"></i>
-                                Forms
+                                Reporte General
                             </a>
-                            <ul>
-                                <li>
-                                    <a href="forms.html" title="Layouts &amp; Elements">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Layouts &amp; Elements
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="forms_validation.html" title="Forms validation">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Forms validation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="form_wizard.html" title="Form wizard">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Form wizard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="forms_inline.html" title="Inline editor">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Inline editor
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="image_editor.html" title="Image crop">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Image crop
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="file_upload.html" title="Files uploader">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Files uploader
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dropzone_uploader.html" title="Dropzone uploader">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Dropzone uploader
-                                    </a>
-                                </li>
-                            </ul>
+                         
                         </li>
-                       <li>
-                            <a href="javascript:;" title="Maps">
-                                <i class="glyph-icon icon-map-marker"></i>
-                                Maps
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="google_maps.html" title="Google Maps">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Google maps
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="vector_maps.html" title="Vector maps">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Vector maps
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> 
-                        <li>
-                            <a href="javascript:;" title="Help &amp; Support">
-                                <i class="glyph-icon icon-book"></i>
-                                Help &amp; Support
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="docs.html" title="Getting started guide">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Getting started guide
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://agileui.com/support-forums" title="Support forums">
-                                        <i class="glyph-icon icon-chevron-right"></i>
-                                        Support forums
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
+               
+                 
                     </ul>
                     <div class="divider mrg5T mobile-hidden"></div>
                     <div class="text-center mobile-hidden">
@@ -1153,19 +528,11 @@
 
             </div><!-- #page-sidebar -->
             <div id="page-content-wrapper">
-          <%= yield %>
 
-<div id="page-content">
+            <div id="page-content">
 
-<script type="text/javascript">
-
-$(document).ready(function() {
-
-});
-
-</script>
-
-
+               
+                  <%= yield %>
 
 
 

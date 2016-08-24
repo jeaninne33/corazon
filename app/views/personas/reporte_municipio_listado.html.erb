@@ -1,0 +1,40 @@
+<p style='page-break-after:always;'>
+ <div align="right"><em>Reporte generado por la Coord. de Informatica y Sistemas el <%=Time.now.strftime("%d/%m/%Y a las %I:%M")%></em></div>
+<b>Municipio: <%=@listado.last.municipio%> - Sector:  <%=@listado.last.sector%> </b><br />
+<b>Fecha: <%=@listado.last.fecha.strftime("%d/%m/%Y")%></b>
+<br /><br />
+
+<table class="table-striped table-hover table-bordered table-condensed">
+		<tr >
+		<th>#No</th>
+		<th>CEDULA</th>
+		<th>NOMBRE Y APELLIDOS</th>
+		<th>DIRECCION</th>
+		<th>TELEFONO</th>
+		<th>AYUDA (ESTADO)</th>
+
+	</tr>
+	<% if !@listado.blank?  %>
+
+	<% @listado.each_with_index do |item, index|%>
+		    	<tr>
+		    				<th><%= index+1 %></th>
+  							<th><%=item.cedula %></th>
+							<th><%=item.nombres.capitalize%></th>
+							<th><%=item.direccion.capitalize%></th>
+							<th><%=item.telefono1%></th>
+							<th>
+							<% if !@listado_ayudas.blank? %>
+							  <% for ayudas in @listado_ayudas %>
+							   <% if ayudas.persona_id == item.id%>
+							  	  	<li><%=ayudas.nombre%>	(<%=ayudas.estado%>)</li>
+									<% end -%>
+
+							  <% end %>
+							<% end %>
+							</th>
+				</tr>
+		  <% end %>
+	<% end %>
+</table>
+</p> 

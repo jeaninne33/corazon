@@ -1,0 +1,71 @@
+<p style='page-break-after:always;'>
+ <div align="right"><em>Reporte generado por la Coord. de Sistemas e Informatica el <%=Time.now.strftime("%d/%m/%Y a las %I:%M")%></em></div>
+ <% total_urg=0 %>
+ <% total_nor=0 %>
+ <% total_g=0 %>
+ <% ayuda = Ayuda.where(:id=> params[:id]) %>
+<% if !ayuda.blank? %>
+<table class="table-striped table-hover table-bordered table-condensed">
+	<tr>
+		<th colspan="5"><b>Reporte de Tipo de Ayuda: <%= ayuda.last.nombre %><%= @texto %></b></th>
+	</tr>
+  <tr>
+		<th colspan="5"><b></b></th>
+	</tr>
+	<tr >
+    <th>N°</th>
+		<th>Municipio - Sector - Fecha</th>
+		<th>Urgente</th>
+		<th>Normales</th>
+		<th>Totales</th>
+	</tr>
+	<tbody>
+
+    <% @localidad.each_with_index do |item1,index| %>
+
+    <% total=0 %>
+				<tr>
+          <td><%= index+1 %></td>
+					<td><%= item1.municipio %> - <%= item1.sector %> - <%=item1.fecha.strftime("%d/%m/%Y")%></td>
+          <td>
+          <% @ayudas_urgentes   = Persona.find_by_sql("SELECT conclusions.locality_id, conclusions.fecha, conclusions.estado, localities.municipio , localities.sector ,COUNT(*) AS count_all, conclusions.ayuda_id AS conclusions_solicitud FROM personas,localities,conclusions WHERE conclusions.persona_id = personas.id and conclusions.locality_id = localities.id and conclusions.estado ='Urgente' and  conclusions.ayuda_id=#{params[:id]} and  localities.id=#{item1.id}  GROUP BY conclusions.ayuda_id, conclusions.locality_id, conclusions.fecha ORDER BY localities.fecha")%>
+          <% if !@ayudas_urgentes.blank? %>
+            <%= @ayudas_urgentes.last.count_all %>
+            <% total=total+@ayudas_urgentes.last.count_all %>
+            <% total_urg=total_urg+@ayudas_urgentes.last.count_all %>
+          <% else %>
+              <%= '0' %>
+          <%end %>
+          </td>
+
+					<td>
+            <% @ayudas_normales  = Persona.find_by_sql("SELECT conclusions.locality_id, conclusions.fecha, conclusions.estado, localities.municipio , localities.sector ,COUNT(*) AS count_all, conclusions.ayuda_id AS conclusions_solicitud FROM personas,localities,conclusions WHERE conclusions.persona_id = personas.id and conclusions.locality_id = localities.id and conclusions.estado ='Normal' and  conclusions.ayuda_id=#{params[:id]} and  localities.id=#{item1.id}  GROUP BY conclusions.ayuda_id, conclusions.locality_id, conclusions.fecha ORDER BY localities.fecha") %>
+            <% if !@ayudas_normales.blank? %>
+              <%= @ayudas_normales.last.count_all %>
+              <% total=total+@ayudas_normales.last.count_all %>
+              <% total_nor=total_nor+@ayudas_normales.last.count_all %>
+            <% else %>
+                <%= '0' %>
+            <%end %>
+
+            <%#= item.count_all %></td>
+				 	<td><%= total %></td>
+            <% total_g=total_g+total %>
+				</tr>
+		 <% end -%>
+
+	</tbody>
+<tfoot>
+	<th colspan="2">Totales</th>
+	<th> <%= total_urg%></th>
+	<th> <%= total_nor %></th>
+	<th> <%= total_g %></th>
+	</tfoot>
+</table>
+<% else %>
+<br/>
+  <strong><b>No existen resultados para esa ayuda </b></strong>
+
+<% end %>
+
+<p/>

@@ -1,0 +1,63 @@
+<div id="page-title">
+
+<h3>
+    Listado de Reportes
+    <small>
+        Listado de Reportes de la jornada  <b>Corazon Adentro</b>
+    </small>
+</h3>
+
+</div><!-- #page-title -->
+
+<div class="tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+            <div class="button-block-justified">
+                <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="justified-tabs-1" aria-labelledby="ui-id-19" aria-selected="false">
+                        <a href="#justified-tabs-1" title="Tab 1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-19">
+                            <i class="glyph-icon icon-archive float-left opacity-80"></i>
+Reportes por Municipio                        </a>
+                    </li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="justified-tabs-2" aria-labelledby="ui-id-20" aria-selected="false">
+                        <a href="#justified-tabs-2" title="Tab 2" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-20">
+                            <i class="glyph-icon icon-beaker float-left opacity-80"></i>
+Reportes por Ayudas                        </a>
+                    </li>
+
+                    <li class="mobile-hidden ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="justified-tabs-3" aria-labelledby="ui-id-22" aria-selected="false">
+                        <a href="#justified-tabs-4" title="Tab 4" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-22">
+                            <i class="glyph-icon icon-cogs float-left opacity-80"></i>
+                            Reportes por Instituciones
+                        </a>
+                    </li>
+
+                    <li class="mobile-hidden ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="justified-tabs-4" aria-labelledby="ui-id-22" aria-selected="false">
+                        <a href="#justified-tabs-4" title="Tab 4" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-22">
+                            <i class="glyph-icon icon-cogs float-left opacity-80"></i>
+                            Listado de Solicitantes
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="justified-tabs-1" aria-labelledby="ui-id-19" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                <%#= button_to [:reporte_municipio, @id] do %>
+                  Municipio <strong><%#= @municipio.nombre %></strong>
+                <%# end %>
+                <%#= render 'form' %>
+              get 'personas/:id/' => 'personas#reporte_municipio'<br />
+              get 'personas/:id/reporte_municipio_listado' => 'personas#reporte_municipio_listado'
+              get 'personas/:fecha1/:fecha2/reporte_totales_sectores' => 'personas#reporte_totales_sectores'
+
+            </div>
+            <div id="justified-tabs-2" aria-labelledby="ui-id-20" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+              get 'personas/:id/:fecha1/:fecha2/reporte_ayuda' => 'personas#reporte_ayuda'
+            </div>
+            <div id="justified-tabs-3" aria-labelledby="ui-id-22" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+              get 'personas/:id/:fecha/reporte_por_institucion' => 'personas#reporte_por_institucion'
+
+            </div>
+
+            <div id="justified-tabs-4" aria-labelledby="ui-id-22" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+              get 'personas/:id/listado' => 'personas#listado'
+
+            </div>
+        </div>

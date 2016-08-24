@@ -1,0 +1,72 @@
+ <p style='page-break-after:always;'>
+ <div align="right"><em>Reporte generado por la Coord. de Informatica y Sistemas el <%=Time.now.strftime("%d/%m/%Y a las %I:%M")%></em></div>
+ <hr />
+ <%#= @p.inspect%>
+ <% localidad="" %>
+<% if !@resultado.blank? %>
+  <b>Reporte Genenal<b/><br />
+  <b><%= @texto %></b>
+
+<br />
+<br />
+<table class="table-striped table-hover table-bordered table-condensed">
+	<tr >
+		<th>INSTITUCION</th>
+		<th>AYUDAS</th>
+		<th colspan="2"></th>
+		<th colspan="2">SOLICITUDES</th>
+
+		<th></th>
+
+	</tr>
+	<tr>
+		<th></th>
+		<th></th>
+		<th colspan="2">NORMALES</th>
+		<th colspan="2">URGENTES</th>
+		<th colspan="0">TOTALES</th>
+	</tr>
+
+  <% for item in @resultado %>
+  <%# localidad=localidad+item.sector+' - '+item.fecha.strftime("%d/%m")+' ; ' %>
+  <%#= localidad.inspect %>
+
+<tr>
+	<td><%= item.institucion_nombre %> </td>
+	<td><%= item.nombre.upcase %></td>
+	<td colspan="2" align="center">
+
+		<% if !@normal.blank? %>
+			  <% for item2 in @normal %>
+			        <%= item2.cuenta if (item2.id==item.id) %>
+			        	<% item2 = @normal.length+1 %>
+
+			  <% end %>
+		<% end %>
+
+
+	</td>
+
+	<td colspan="2" align="center">
+			<% if !@urgente.blank? %>
+			  <% for item1 in @urgente %>
+			        <%= item1.cuenta if (item1.id==item.id) %>
+			        	<% item1 = @urgente.length+1 %>
+			  <% end %>
+
+		<% end %>
+
+	</td>
+	<td colspan="0" align="center"><%= item.cuenta %></td>
+
+</tr>
+  <% end %>
+<% else %>
+<br/>
+  	 No hay datos en esta Consulta
+<% end %>
+
+</table>
+<strong><%#=localidad%></strong>
+
+</p>

@@ -1,83 +1,199 @@
 class PersonasController < ApplicationController
   before_action :set_persona, only: [:show, :edit, :update, :destroy]
-   layout "limpio", only: [:listado,:totales,:totales_municipio]
-   layout "limpio", only: [:listado,:totales ]
-  # GET /personas
-  # GET /personas.json
+  layout "limpio", only: [:reporte_ayuda,:reporte_municipio,:reporte_municipio_listado,:reporte_totales_sectores,:reporte_por_institucion,  :reporte_listado_rango]
 
-  def listado
-   
-    @resultado = Persona.all.order(:municipio)
-  end
-
-  def reporte_diario
-  	
-  	
+ def reporte_totales_sectores
+   #hay que revisar esto bien
+   @id_localidad= Locality.find_by_sql("select localities.fecha, localities.id, localities.municipio, localities.sector from localities where (fecha between '#{params[:fecha1]}' and '#{params[:fecha2]}') and localities.activo=true order by localities.fecha")
+   @ayudas =Ayuda.joins(:institution).order("institutions.orden,ayudas.nombre")
+   @texto="Reporte General de las Localidades desde  #{params[:fecha1]} hasta #{params[:fecha2]}"
   end
 
 
+def reporte_por_institucion
+    if params[:fecha]=="todos"
+      @texto = "Reporte general por Institucion"
+      a="select personas.id, institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id and institutions.id=#{params[:id]} order by cedula "
+    else
+      @localidad = Locality.where(:id=> params[:fecha])
+      @texto = "Reporte por Institucion en #{@localidad.last.municipio} #{@localidad.last.sector} #{@localidad.last.fecha.strftime('%d/%m/%Y')}"
+      a="select personas.id, institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where localities.id=#{params[:fecha]} and personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id and  institutions.id=#{params[:id]} order by cedula "
+    end
 
-#"SELECT  `personas` . * FROM  `personas` INNER JOIN  `conclusions` ON  `conclusions`.`persona_id` =  `personas`.`id` WHERE (conclusions.fecha BETWEEN  '2015-07-21' AND  '2015-07-31' ) GROUP BY personas.municipio, personas.parroquia, conclusions.solicitud"
+    @normal = Persona.find_by_sql("select ayudas.id,count(*) as cuenta ,localities.municipio,localities.sector ,localities.fecha, conclusions.estado, ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions where personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and locality_id=#{params[:fecha]} and ayudas.institution_id = institutions.id and conclusions.estado = 'Normal' group by (conclusions.ayuda_id)")
+    @urgente = Persona.find_by_sql("select ayudas.id,count(*) as cuenta , localities.municipio,localities.sector ,localities.fecha,conclusions.estado, ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions where personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and locality_id=#{params[:fecha]} and ayudas.institution_id = institutions.id and conclusions.estado = 'Urgente' group by (conclusions.ayuda_id)")
+    @resultado= Persona.find_by_sql("select ayudas.id,count(*) as cuenta, localities.municipio,localities.sector ,localities.fecha,ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions  where personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and locality_id=#{params[:fecha]} 	  and ayudas.institution_id = institutions.id and (conclusions.estado = 'Normal' or conclusions.estado = 'Urgente' ) and institutions.id=#{params[:id]} group by (conclusions.ayuda_id) order by institutions.orden ASC")
 
+    @institucion  = Persona.find_by_sql(a)
+    @listado_ayudas = Persona.find_by_sql("select conclusions.persona_id, ayudas.nombre, conclusions.estado  from personas,ayudas, localities ,conclusions where personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and ayudas.institution_id=#{params[:id]} and (conclusions.estado = 'Urgente' or conclusions.estado='Normal') order by (conclusions.ayuda_id)")
+end
 
+def reporte_listado_rango
+  mun=["Antolín del Campo","Arismendi","Díaz","García","Gómez","Maneiro","Marcano", "Mariño", "Península de Macanao", "Tubores", "Villalba"]
 
-def totales_municipio
-@fecha_inicio = params[:fecha_inicio]
-@fecha_fin = params[:fecha_fin]
-@total_municipio= Persona.joins(:conclusions).group("personas.municipio, personas.parroquia, conclusions.solicitud").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-27','2015-07-31').count
+    if params[:id]=="todos" #id de la institucion
+      @texto = "Reporte General"
+      i=''
+      @ins=false
+    else
+      @ins=true
+      @texto = "Reporte por Institucion "
+      i="institutions.id='#{params[:id]}' and"
+    end
 
+    if params[:muni]=="todos" #municipio
+      @ban=true
+    else
+      @ban=false
+      n=params[:muni]
+      m=mun[n.to_i]
+      @texto = @texto+" del Municipio:  #{m}"
+      a="localities.municipio='#{m}' and"
+    end
 
-#@garcia_total_uniforme = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Uniformes'").count
-#@garcia_total_kitdeportivo = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Kit deportivo'").count
-#@garcia_total_pasaje = Persona.joins(:conclusions).where("personas.municipio= 'Garcia' and conclusions.solicitud ='Pasaje(s)'").count
+    if params[:sector]=="todos" #sector
+      s=''
+      @ban2=true
+    else
+      @ban2=false
+      sector = Locality.where(:id=> params[:sector])
+      if !sector.blank?
+        sec=sector.last.sector
+        @texto = @texto+", Sector:  #{sec}"
+      else
+        @texto = @texto+", NO EXISTE EL SECTOR"
+      end
+      s="localities.sector='#{sec}' and"
+    end
+    if params[:ayuda]=="todos" #ayuda
+      ay=''
+    else
+      ayu = Ayuda.where(:id=> params[:ayuda])
+      if !ayu.blank?
+        @texto = @texto+", Tipo de Ayuda: #{ayu.last.nombre} "
+      else
+        @texto = @texto+", ERROR NO EXISTE LA AYUDA"
+      end
+      ay="conclusions.ayuda_id='#{params[:ayuda]}' and"
+    end
+    if ((params[:f1]=='0' or params[:f2]=='0') or (params[:f1]=='0' and params[:f2]=='0')) #rango de fechas
+      b=''
+      @ban1=true
+    else
+      if params[:f1]==params[:f2] #rango de fechas
+        @ban1=false
+      else
+        @ban1=true
+      end
+      @texto = @texto+", desde el  #{params[:f1]} hasta #{params[:f2]} "
+      b="(localities.fecha between '#{params[:f1]}' and '#{params[:f2]}') and"
+    end
 
+  @institucion  = Persona.find_by_sql("select distinct personas.id,localities.fecha,  institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where #{a} #{b} #{i} #{s} #{ay} personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id and (conclusions.estado = 'Urgente' or conclusions.estado='Normal')  group by cedula order by localities.fecha,cedula ASC ")
+  @listado_ayudas = Persona.find_by_sql("select personas.id, institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where #{a} #{b} #{i} #{s} #{ay} personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id and (conclusions.estado = 'Urgente' or conclusions.estado='Normal')  order by localities.fecha,cedula ASC ")
+end
+
+def reporte_ayuda
+
+  @texto=""
+  if ((params[:fecha1]=='0' or params[:fecha2]=='0') or (params[:fecha1]=='0' and params[:fecha2]=='0')) #rango de fechas
+    rango=''
+  else
+    if params[:fecha1]==params[:fecha2] #rango de fechas
+      @texto = @texto+", de la fecha: #{params[:fecha1]}  "
+    else
+      @texto = @texto+", desde el  #{params[:fecha1]} hasta #{params[:fecha2]} "
+    end
+    rango="(localities.fecha between '#{params[:fecha1]}' and '#{params[:fecha2]}') and  "
+  end
+
+  @localidad= Locality.find_by_sql("select localities.fecha, localities.id, localities.municipio, localities.sector from localities where #{rango} localities.activo=true order by localities.fecha")
+end
+
+def reporte_municipio_listado
+
+  @listado = Persona.find_by_sql("select distinct personas.id, cedula, concat(nombre1,' ',nombre2,' ',apellido1,' ',apellido2)as nombres,concat (direccion) as direccion, telefono1,ayudas.nombre, conclusions.estado,localities.fecha,localities.municipio,localities.sector  from personas,ayudas, localities ,conclusions ,institutions where personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and locality_id=#{params[:id]} and ayudas.institution_id = institutions.id and (conclusions.estado = 'Urgente' or conclusions.estado='Normal') group by (personas.cedula)")
+  @listado_ayudas = Persona.find_by_sql("select conclusions.persona_id, ayudas.nombre, conclusions.estado  from personas,ayudas, localities ,conclusions where personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and locality_id=#{params[:id]} and (conclusions.estado = 'Urgente' or conclusions.estado='Normal') order by (conclusions.ayuda_id)")
 
 end
 
 
+def reporte_municipio
+  mun=["Antolín del Campo","Arismendi","Díaz","García","Gómez","Maneiro","Marcano", "Mariño", "Península de Macanao", "Tubores", "Villalba"]
 
+      @texto=""
+      if params[:id]=="todos" #id de la localidad
+        loca=''
+      else
+        localidad = Locality.where(:id=> params[:id])
+        if !localidad.blank?
+          @texto = @texto+" Municipio:  #{localidad.last.municipio} - Sector: #{localidad.last.sector} - Fecha: #{localidad.last.fecha}"
+        else
+          @texto = @texto+", ERROR NO EXISTE LA LOCALIDAD"
+        end
+        loca="conclusions.locality_id='#{params[:id]}' and"
+      end
 
+      if params[:inst]=="todos" #id de la institucion
+        ins=''
+      else
+        institucion = Institution.where(:id=> params[:inst])
+        if !institucion.blank?
+          @texto=@texto+" - Institución: #{institucion.last.nombre}"
+        else
+          @texto = @texto+", ERROR NO EXISTE LA INSTITUCION"
+        end
+        ins="institutions.id='#{params[:inst]}' and"
+      end
 
-  def totales
-  
+      if params[:muni]=="todos" #municipio
+        municipio=''
+      else
+        n=params[:muni]
+        @m=mun[n.to_i]
+        @texto = @texto+" - Municipio:  #{@m}"
+        municipio="localities.municipio='#{@m}' and"
+      end
 
-  @beca_educacion = Conclusion.where(:solicitud=> "Beca Educacion").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @beca_universitaria = Conclusion.where(:solicitud=> "Beca Universitaria").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @econ_Discapacidad= Conclusion.where(:solicitud=> "Econ. Discapacidad").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @operacion= Conclusion.where(:solicitud=> "Operacion").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @estudio_especializado= Conclusion.where(:solicitud=> "Estudio Especializado").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @medicinas= Conclusion.where(:solicitud=> "Medicinas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @silla_de_ruedas=Conclusion.where(:solicitud=> "Silla de Ruedas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @andadera=Conclusion.where(:solicitud=> "Andadera").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @baston=Conclusion.where(:solicitud=> "Baston").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @botas_ortopedicas=Conclusion.where(:solicitud=> "Botas Ortopedicas").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @protesis=Conclusion.where(:solicitud=> "Protesis").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @cama=Conclusion.where(:solicitud=> "Cama").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @cama_clinica=Conclusion.where(:solicitud=> "Cama Clinica").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @colchon=Conclusion.where(:solicitud=> "Colchon").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @colchon_clinico=Conclusion.where(:solicitud=> "Colchon Clinico").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @colchon_antiescaras=Conclusion.where(:solicitud=> "Colchon Antiescaras").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @lavadora=Conclusion.where(:solicitud=> "Lavadora").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @cocina=Conclusion.where(:solicitud=> "Cocina ").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @nevera=Conclusion.where(:solicitud=> "Nevera ").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @freezer=Conclusion.where(:solicitud=> "Freezer").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @hijos_de_vzla=Conclusion.where(:solicitud=> "Hijos de Vzla  ").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @amor_mayor=Conclusion.where(:solicitud=> "Amor Mayor").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @vivienda=Conclusion.where(:solicitud=> "Vivienda").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @kit_construccion=Conclusion.where(:solicitud=> "Kit de material de construccion").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @techo=Conclusion.where(:solicitud=> "Techo").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @tanque=Conclusion.where(:solicitud=> "Tanque").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @maquina_coser=Conclusion.where(:solicitud=> "Maquina de Coser").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @uniformes=Conclusion.where(:solicitud=> "Uniformes").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @kit_deportivo=Conclusion.where(:solicitud=> "Kit deportivo").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
-  @pasajes=Conclusion.where(:solicitud=> "Pasaje(s)").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-20','2015-07-25').count
+      if ((params[:f1]=='0' or params[:f2]=='0') or (params[:f1]=='0' and params[:f2]=='0')) #rango de fechas
+        rango=''
+      else
+        if params[:f1]==params[:f2] #rango de fechas
+          @texto = @texto+", Fecha:  #{params[:f1]} "
+        else
+          @texto = @texto+", desde el  #{params[:f1]} hasta #{params[:f2]} "
+        end
+        rango="(localities.fecha between '#{params[:f1]}' and '#{params[:f2]}') and"
+      end
+   @i=0
+   @adentro = true
+   @resultado = Persona.find_by_sql("select ayudas.id,count(*) as cuenta, localities.municipio,localities.sector ,localities.fecha,ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions where #{ins} #{rango} #{loca} #{municipio} personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and  ayudas.institution_id = institutions.id and (conclusions.estado = 'Normal' or conclusions.estado = 'Urgente' ) group by (conclusions.ayuda_id) order by institutions.orden ASC,ayudas.nombre")
+   #@p="select ayudas.id,count(*) as cuenta, localities.municipio,localities.sector ,localities.fecha,ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions where #{ins} #{rango} #{loca} #{municipio} personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id and  ayudas.institution_id = institutions.id and (conclusions.estado = 'Normal' or conclusions.estado = 'Urgente' ) group by (conclusions.ayuda_id) order by institutions.orden ASC,ayudas.nombre"
+   @normal = Persona.find_by_sql("select ayudas.id,count(*) as cuenta , localities.municipio,localities.sector ,localities.fecha,conclusions.estado, ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions where #{ins}  #{rango}  #{loca} #{municipio} personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id  and ayudas.institution_id = institutions.id and conclusions.estado = 'Normal' group by (conclusions.ayuda_id)")
+   @urgente = Persona.find_by_sql("select ayudas.id,count(*) as cuenta , localities.municipio,localities.sector ,localities.fecha,conclusions.estado, ayudas.nombre, institutions.nombre  as institucion_nombre from personas,ayudas, localities ,conclusions ,institutions where #{ins}  #{rango}  #{loca} #{municipio} personas.id=conclusions.persona_id and conclusions.locality_id = localities.id and ayudas.id = conclusions.ayuda_id  and ayudas.institution_id = institutions.id and conclusions.estado = 'Urgente' group by (conclusions.ayuda_id)")
+   #respond_to do |format|
+    # format.csv { send_data @resultado.to_csv}
+   #end
+end
 
-@totales = @beca_educacion+@beca_universitaria+@econ_Discapacidad+@operacion+@estudio_especializado+@medicinas+@silla_de_ruedas+@andadera+@baston+@botas_ortopedicas+@protesis+@cama+@cama_clinica+@colchon+@colchon_clinico+@colchon_antiescaras+@lavadora+@cocina+@nevera+@freezer+@hijos_de_vzla+@amor_mayor+@vivienda+@kit_construccion+@techo+@tanque+@maquina_coser+@uniformes+@kit_deportivo+@pasajes
+ # def reporte_diario
+ # 	@resultado = Persona.joins(:conclusions).group("personas.municipio, conclusions.ayuda_id").where("conclusions.fecha='#{params[:fecha]}' and personas.municipio= #{@municipio}").count
+ #
+ # end
 
+  def totales_municipio
+    @fecha_inicio = params[:fecha_inicio]
+    @fecha_fin = params[:fecha_fin]
+    @total_municipio= Persona.joins(:conclusions).group("personas.municipio, personas.parroquia, conclusions.ayuda_id").where("conclusions.fecha BETWEEN ? AND ? ", '2015-07-27','2015-07-31').count
   end
 
   def index
-    @personas = Persona.all
+    @personas = Persona.all.page(params[:page]).per(30)
+      if params[:search]
+        @personas = Persona.search(params[:search]).order("created_at DESC").page(params[:page]).per(30)
+      else
+        @personas = Persona.all.order('created_at DESC').page(params[:page]).per(30)
+      end
   end
 
   # GET /personas/1
@@ -87,6 +203,9 @@ end
 
   # GET /personas/new
   def new
+  	@localidades = Locality.all.pluck(:municipio,:sector,:fecha)
+
+
     @persona = Persona.new
     @persona.build_economy
     @persona.families.build  if @persona.families.empty?
@@ -94,19 +213,18 @@ end
 
   end
 
-  # GET /personas/1/edit
   def edit
-   # @persona.conclusions.build  
+   # @persona.conclusions.build
   end
 
-  # POST /personas
-  # POST /personas.json
   def create
+    #@fecha= Locality.find(params[locality_id]).pluck(:fecha)
+
     @persona = Persona.new(persona_params)
 
     respond_to do |format|
       if @persona.save
-        format.html { redirect_to @persona, notice: 'Persona was successfully created.' }
+        format.html { redirect_to @persona, notice: 'La Persona se ha almacenado exitosamente.' }
         format.json { render :show, status: :created, location: @persona }
       else
         format.html { render :new }
@@ -115,12 +233,10 @@ end
     end
   end
 
-  # PATCH/PUT /personas/1
-  # PATCH/PUT /personas/1.json
   def update
     respond_to do |format|
       if @persona.update(persona_params)
-        format.html { redirect_to @persona, notice: 'Persona was successfully updated.' }
+        format.html { redirect_to @persona, notice: 'La Persona se ha actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @persona }
       else
         format.html { render :edit }
@@ -129,25 +245,21 @@ end
     end
   end
 
-  # DELETE /personas/1
-  # DELETE /personas/1.json
   def destroy
     @persona.destroy
     respond_to do |format|
-      format.html { redirect_to personas_url, notice: 'Persona was successfully destroyed.' }
+      format.html { redirect_to personas_url, notice: 'La Persona se ha eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_persona
       @persona = Persona.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def persona_params
-      params.require(:persona).permit(:nombre1, :nombre2, :apellido1, :apellido2, :cedula, :direccion, :referencia, :municipio, :parroquia, :telefono1, :telefono2,  economy_attributes: [:sector,:empresa,:ingreso_familiar,:tipo_casa,:condiciones_de_vivienda,:persona_hab,:cant_hijos,:enceres_compartidos,:adultos_mayores,:discapacitados,:enfermos,:pobreza_extrema, :descripcion],conclusions_attributes: [:id, :solicitud,:estado,:fecha,:_destroy],families_attributes: [:id, :nombre,:apellido,:parentesco,:_destroy])
+      params.require(:persona).permit(:nombre1, :nombre2, :apellido1, :apellido2, :cedula, :fecha_nac,:direccion, :referencia, :municipio, :parroquia, :telefono1, :telefono2, :locality_id ,:sexo, :madre_soltera, :municipio_id,  economy_attributes: [:sector,:empresa,:ingreso_familiar,:tipo_casa,:condiciones_de_vivienda,:persona_hab,:cant_hijos,:enceres_compartidos,:adultos_mayores,:discapacitados,:enfermos,:pobreza_extrema, :descripcion],conclusions_attributes: [:id, :ayuda_id,:estado,:fecha,:_destroy,:locality_id],families_attributes: [:id, :nombre,:apellido,:fecha_nac,:parentesco,:cedula, :_destroy])
 
     end
 end

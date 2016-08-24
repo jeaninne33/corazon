@@ -1,0 +1,98 @@
+  <p style='page-break-after:always;'>
+
+ <div align="right"><em>Reporte generado por la Coord. de Informatica y Sistemas el <%=Time.now.strftime("%d/%m/%Y a las %I:%M")%></em></div>
+<br />
+<%#=@id_localidad.inspect %>
+<%#= @resultados.inspect %>
+<hr />
+<b><%= @texto %></b><br />
+<br/>
+
+<table class="table-striped table-hover table-bordered table-condensed">
+	 <thead>
+
+	<tr >
+		<th>Institucion</th>
+		<th>Ayudas</th>
+		<% @id_localidad.each_with_index do |item,index| %>
+			<th ><%=index+1%></th>
+		<% end -%>
+	    <th >Totales</th>
+		<th>Urgentes</th>
+
+	</tr>
+	 </thead>
+
+  <tbody>
+  	<% if !@ayudas.blank? %>
+  	  <% for item in @ayudas %>
+  	    	<tr>
+
+  	    <td><%=item.institution.nombre.upcase %></td>
+		<td><%= item.nombre.capitalize %></td>
+      <% total=0 %>
+      <% @id_localidad.each_with_index do |locali, index2| %>
+      <% @resultados = Conclusion.find_by_sql("select conclusions.ayuda_id, count(*) as total, ayudas.nombre from conclusions,personas,ayudas where personas.id=conclusions.persona_id and conclusions.locality_id = #{locali.id} and (conclusions.estado = 'Normal' or conclusions.estado = 'Urgente' ) and ayudas.id=conclusions.ayuda_id and conclusions.ayuda_id=#{item.id} group by conclusions.ayuda_id") %>
+
+      <td>
+       <% if !@resultados.blank? %>
+          <%# @resultados.each_with_index do |resul, index1|  %>
+            <%# if item.id==resul.ayuda_id %>
+             <%= @resultados[0].total %>
+             <% total=total+@resultados[0].total %>
+          <%# else %>
+            <%#= '0' %>
+            <%# end%>
+          <%# end%>
+        <%else %>
+           <%= '0' %>
+        <% end%>
+      </td>
+      <% end%>
+      <td> <%= total %></td>
+
+      <% total_urg=0 %>
+    <% @id_localidad.each_with_index do |local, index4| %>
+      <% @urgentes= Conclusion.find_by_sql("select conclusions.ayuda_id, count(*) as total, ayudas.nombre from conclusions,personas,ayudas where personas.id=conclusions.persona_id and conclusions.locality_id = #{local.id} and conclusions.estado = 'Urgente' and ayudas.id=conclusions.ayuda_id and conclusions.ayuda_id=#{item.id} group by conclusions.ayuda_id") %>
+          <% if !@urgentes.blank? %>
+           <%# @urgentes.each_with_index do |result, index1|  %>
+             <%# if item.id==result.ayuda_id %>
+              <% total_urg=total_urg+@urgentes[0].total %>
+           <%# end%>
+         <%# end%>
+         <% end%>
+
+    <% end%>
+    <td> <%= total_urg %></td>
+	</tr>
+
+      <% end -%>
+  	  <% end %>
+
+  </tbody>
+</table>
+
+
+<br />
+
+
+<table class="table-striped table-hover table-bordered table-condensed">
+ <thead>
+ <tr><td ></td><td colespan="2">Leyenda</td></tr>
+ <tr>
+ <td>Numero</td>
+  <td>Municipio - Sector - Fecha</td>
+ </tr>
+  </thead>
+    <tbody>
+
+		<% @id_localidad.each_with_index do |item,index| %>
+		 <tr>
+			<td><%=index+1%></td>
+			<td><%=item.municipio %> - <%=item.sector%> - <%= item.fecha.strftime("%d/%m/%Y") %></td>
+	    </tr>
+
+		<% end -%>
+    </tbody>
+</table>
+</p>

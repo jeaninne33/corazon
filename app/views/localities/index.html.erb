@@ -1,0 +1,94 @@
+<div id="page-title">
+
+<h3>
+    Listado de Localidades
+    <small>
+        Listado de localidades en la jornada  <b>Corazon Adentro</b>
+    </small>
+</h3>
+
+</div><!-- #page-title -->
+
+
+
+
+<p id="notice"><%= notice %></p>
+<div class="form-row">
+        <div class="form-label col-md-3">
+            <label for="">Agregue un criterio de busqueda
+        </div>
+        <div class="form-input col-md-9">
+            <div class="row">
+                <div class="col-md-3">
+                <%= form_tag(localities_path, :method => "get", id: "search-form", :html=> { class: 'form-horizontal' })do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Buscar Localidad" %>
+                    <%= submit_tag "Buscar" %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<%= link_to  new_locality_path,:class=> "btn medium bg-blue" do %>
+                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva Localidad </span>
+<% end -%>
+
+<div class="divider"></div>
+<% if @localities.present? %>
+<div class="example-box">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Fecha</th>
+      <th>Municipio</th>
+      <th>Sector</th>
+      <th>Activo</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @localities.each do |locality| %>
+      <tr class="odd gradeX">
+              <td>
+                <%= locality.id%>
+              </td>
+        <td><%= locality.fecha.strftime("%d/%m/%Y") %></td>
+
+        <td><%= locality.municipio %></td>
+        <td><%= locality.sector %></td>
+        <td><%= locality.activo %></td>
+
+        <td >
+                <%= link_to locality do %>
+                 <i class="glyph-icon icon-download mrg5R"></i> Mostrar
+                <% end -%>
+
+                 <%= link_to edit_locality_path(locality) do%>
+                   <i class="glyph-icon icon-edit mrg5R"></i> Editar
+                 <% end -%>
+
+                 <%= link_to  locality, method: :delete, data: { confirm: 'Estas seguro de eliminar la localidad?' } do%>
+                    <i class="glyph-icon icon-remove mrg5R"></i>Borrar
+                    <% end -%>
+
+</td>
+
+     </tr>    <% end %>
+
+
+
+  </tbody>
+</table>
+
+<% else %>
+  <p> no hay localidad(es) con este criterio de busqueda: <%= params[:search] %>.</p>
+
+<% end -%>
+<br>
+
+<%= paginate @localities %>
+
+
+</div>

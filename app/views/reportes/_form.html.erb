@@ -1,0 +1,4 @@
+<%= simple_form_for @municipio, :html=> { class: 'form-horizontal' }  do |f| %>
+  Municipio-Sector-Fecha:
+  <%= f.select :locality_id, Locality.all.order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false,  prompt: 'Seleccione ' %>
+<% end %>
