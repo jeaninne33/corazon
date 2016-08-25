@@ -263,8 +263,13 @@ Estudio Socio Economico
                         <div class="col-md-3">
                           Personas Enfermas <%= economy.input :enfermos, collection: ['si','no'],as: :radio_buttons, label: false%>
                         </div>
+                        <div class="col-md-3">
+                          Compra CLAP? <%= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
+                        </div>
+                        <div class="col-md-3">
+                          Adultos Mayores<%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "Adultos Mayores" %>
 
-
+                        </div>
                     </div>
                 </div>
             </div>
