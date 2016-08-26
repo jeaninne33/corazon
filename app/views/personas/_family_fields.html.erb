@@ -22,7 +22,8 @@
                         </div>
                         <div class="col-md-2">
                         <div class="bfh-datepicker">
-                         <%= f.input :fecha_nac, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 4,order: [:day, :month, :year],label: 'Fecha de Nacimiento' ,:input_html=>{ :class=>"input-medium"} %>
+
+                         <%= f.input :fecha_nac,  as: :date, html5: true, label: 'Fecha de Nacimiento'%>
 </div>
 
                         </div>

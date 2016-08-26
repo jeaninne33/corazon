@@ -20,9 +20,10 @@
 
 
                       <div class="col-md-3">
-                          Fecha de solicitud <%= f.input :fecha ,as: :date,start_year: Date.today.year - 0,
+                          Fecha de solicitud <%#= f.input :fecha ,as: :date,start_year: Date.today.year - 0,
                               end_year: Date.today.year - 0, discard_day: false,
                               order: [:day,:month, :year] , label: false%>
+                                <%= f.input :fecha,  as: :date, html5: true%>
                         </div>
 
 
