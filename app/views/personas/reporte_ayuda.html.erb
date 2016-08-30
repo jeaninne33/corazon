@@ -28,7 +28,7 @@
           <td><%= index+1 %></td>
 					<td><%= item1.municipio %> - <%= item1.sector %> - <%=item1.fecha.strftime("%d/%m/%Y")%></td>
           <td>
-          <% @ayudas_urgentes   = Persona.find_by_sql("SELECT conclusions.locality_id, conclusions.fecha, conclusions.estado, localities.municipio , localities.sector ,COUNT(*) AS count_all, conclusions.ayuda_id AS conclusions_solicitud FROM personas,localities,conclusions WHERE conclusions.persona_id = personas.id and conclusions.locality_id = localities.id and conclusions.estado ='Urgente' and  conclusions.ayuda_id=#{params[:id]} and  localities.id=#{item1.id}  GROUP BY conclusions.ayuda_id, conclusions.locality_id, conclusions.fecha ORDER BY localities.fecha")%>
+          <% @ayudas_urgentes   = Persona.find_by_sql("SELECT conclusions.locality_id, localities.fecha, conclusions.estado, localities.municipio , localities.sector ,COUNT(*) AS count_all, conclusions.ayuda_id AS conclusions_solicitud FROM personas,localities,conclusions WHERE conclusions.persona_id = personas.id and conclusions.locality_id = localities.id and conclusions.estado ='Urgente' and  conclusions.ayuda_id=#{params[:id]} and  localities.id=#{item1.id}  GROUP BY conclusions.ayuda_id, conclusions.locality_id, localities.fecha ORDER BY localities.fecha")%>
           <% if !@ayudas_urgentes.blank? %>
             <%= @ayudas_urgentes.last.count_all %>
             <% total=total+@ayudas_urgentes.last.count_all %>
@@ -39,7 +39,7 @@
           </td>
 
 					<td>
-            <% @ayudas_normales  = Persona.find_by_sql("SELECT conclusions.locality_id, conclusions.fecha, conclusions.estado, localities.municipio , localities.sector ,COUNT(*) AS count_all, conclusions.ayuda_id AS conclusions_solicitud FROM personas,localities,conclusions WHERE conclusions.persona_id = personas.id and conclusions.locality_id = localities.id and conclusions.estado ='Normal' and  conclusions.ayuda_id=#{params[:id]} and  localities.id=#{item1.id}  GROUP BY conclusions.ayuda_id, conclusions.locality_id, conclusions.fecha ORDER BY localities.fecha") %>
+            <% @ayudas_normales  = Persona.find_by_sql("SELECT conclusions.locality_id, localities.fecha, conclusions.estado, localities.municipio , localities.sector ,COUNT(*) AS count_all, conclusions.ayuda_id AS conclusions_solicitud FROM personas,localities,conclusions WHERE conclusions.persona_id = personas.id and conclusions.locality_id = localities.id and conclusions.estado ='Normal' and  conclusions.ayuda_id=#{params[:id]} and  localities.id=#{item1.id}  GROUP BY conclusions.ayuda_id, conclusions.locality_id, localities.fecha ORDER BY localities.fecha") %>
             <% if !@ayudas_normales.blank? %>
               <%= @ayudas_normales.last.count_all %>
               <% total=total+@ayudas_normales.last.count_all %>
