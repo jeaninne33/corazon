@@ -89,8 +89,10 @@ def reporte_listado_rango
       b="(localities.fecha between '#{params[:f1]}' and '#{params[:f2]}') and"
     end
 
-  @institucion  = Persona.find_by_sql("select distinct personas.id,localities.fecha,  institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where #{a} #{b} #{i} #{s} #{ay} personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id and (conclusions.estado = 'Urgente' or conclusions.estado='Normal')  group by cedula order by localities.fecha,cedula ASC ")
-  @listado_ayudas = Persona.find_by_sql("select personas.id, institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where #{a} #{b} #{i} #{s} #{ay} personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id and (conclusions.estado = 'Urgente' or conclusions.estado='Normal')  order by localities.fecha,cedula ASC ")
+    #and (conclusions.estado = 'Urgente' or conclusions.estado='Normal')
+
+  @institucion  = Persona.find_by_sql("select distinct personas.id,localities.fecha,  institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where #{a} #{b} #{i} #{s} #{ay} personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id  group by cedula order by localities.fecha,cedula ASC ")
+  @listado_ayudas = Persona.find_by_sql("select personas.id, institutions.nombre as institution, cedula,concat(nombre1,' ',apellido1) as nombres ,telefono1, direccion,conclusions.estado,localities.municipio,localities.sector,ayudas.nombre as ayuditas from personas,localities,conclusions,ayudas,institutions where #{a} #{b} #{i} #{s} #{ay} personas.id=conclusions.persona_id and localities.id=conclusions.locality_id and conclusions.ayuda_id=ayudas.id and ayudas.institution_id=institutions.id order by localities.fecha,cedula ASC ")
 end
 
 def reporte_ayuda

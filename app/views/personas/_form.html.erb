@@ -13,6 +13,20 @@
     </div>
   <% end %>
 
+  <div class="form-row">
+      <div class="form-label col-md-2">
+          <label for="">Cedula de Identidad </label>
+      </div>
+      <div class="form-input col-md-6">
+          <div class="row">
+              <div class="col-md-6">
+                  <%= f.input :cedula,label: false, :placeholder=>"*Cedula de Identidad"%>
+              </div>
+
+
+          </div>
+      </div>
+  </div>
 
             <div class="form-row">
                 <div class="form-label col-md-2">
@@ -21,13 +35,13 @@
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-2">
-                            <%= f.input :nombre1,label: false, :placeholder=>"Primer Nombre"%>
+                            <%= f.input :nombre1,label: false, :placeholder=>"*Primer Nombre"%>
                         </div>
                         <div class="col-md-2">
                             <%= f.input :nombre2,label: false, :placeholder=>"Segundo Nombre" %>
                         </div>
                         <div class="col-md-2">
-                            <%= f.input :apellido1,label: false, :placeholder=>"Primer Apellido" %>
+                            <%= f.input :apellido1,label: false, :placeholder=>"*Primer Apellido" %>
                         </div>
                         <div class="col-md-2">
                             <%= f.input :apellido2,label: false, :placeholder=>"Segundo Apellido" %>
@@ -62,32 +76,18 @@
               </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Cedula de Identidad </label>
-                </div>
-                <div class="form-input col-md-4">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <%= f.input :cedula,label: false, :placeholder=>"Cedula de Identidad"%>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
 
 
             <div class="form-row">
                 <div class="form-label col-md-2">
-                    <label for="">Fecha, Municipio Sector  </label>
+                    <label for="">Fecha, Municipio, Sector  </label>
                 </div>
                 <div class="form-input col-md-10">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
 
 
-                        <%= f.select :locality_id, Locality.where(:activo=>true).order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false,  prompt: 'Seleccione ' %>
+                        <%= f.select :locality_id, Locality.where(:activo=>true).order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false,  prompt: '*Seleccione fecha-Municipio-Sector ' %>
 
                         </div>
 
@@ -107,22 +107,12 @@
 
                 <div class="form-input col-md-10">
                   <div class="row">
+                      <div class="col-md-6">
+                    <%= f.input :direccion,label: false, :placeholder=>"*Direccion" %>
                     <!--<div class="col-md-2">
                       <%= f.select :municipio_id, Municipio.all.order('id ASC').pluck(:nombre), include_blank: false, label: false,  prompt: 'Seleccione municipio' %>
                     </div>-->
-
-
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <%= f.input :direccion,label: false, :placeholder=>"Direccion" %>
-                        </div>
-                        <!--
-                        <div class="col-md-3">
-                            <%= f.input :referencia,label: false, :placeholder=>"Punto de Referencia" %>
-                        </div>
-                      -->
-                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -149,7 +139,9 @@
 
 <div id="page-title">
 <h3>
-  Familiares
+  Familiares  <small>
+         se agregan los datos de los familiares.      <b>   Los campos con (*) son obligatorios</b>
+    </small>
 </h3>
 </div>
 <div id="families">
@@ -171,7 +163,9 @@
 <div id="page-title">
 
 <h3>
-Estudio Socio Economico
+Estudio Social <small>
+             <b>   Los campos con (*) son obligatorios</b>
+  </small>
 
 </h3>
 
@@ -258,7 +252,7 @@ Estudio Socio Economico
                 <div class="form-input col-md-10">
                     <div class="row">
                         <div class="col-md-3">
-                          Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: 'Personas con discapacidad'%>
+                          *Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: '*Personas con discapacidad'%>
 
                         </div>
                         <div class="col-md-3">
@@ -268,7 +262,7 @@ Estudio Socio Economico
                           Compra CLAP? <%= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
                         </div>
                         <div class="col-md-3">
-                          Adultos Mayores<%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "Adultos Mayores" %>
+                          *Adultos Mayores<%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "*Adultos Mayores" %>
 
                         </div>
                     </div>
@@ -282,14 +276,12 @@ Estudio Socio Economico
                 </div>
                 <div class="form-input col-md-10">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                           Descripcion<%= economy.input :descripcion ,label: false, :placeholder=>"Descripcion de la Visita" , prompt: 'Descripcion'%>
 
                         </div>
                         <div class="col-md-3">
-                          <!-- Pobreza Extrema <%#= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
-
-                        -->
+                          *Menores de Edad<%= economy.input :cant_hijos,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Cant. Menores de Edad" , prompt: '*Cant. de Menores'%>
 
                         </div>
 
@@ -303,7 +295,9 @@ Estudio Socio Economico
 
     <div id="page-title">
     <h3>
-      Conclusiones
+      Conclusiones <small>
+             <b>   Los campos con (*) son obligatorios</b>
+        </small>
     </h3>
     </div><div id="conclusions">
 

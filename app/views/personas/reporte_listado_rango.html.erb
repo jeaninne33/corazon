@@ -12,6 +12,7 @@
 <br/>
 <% end %>
 
+
 <table class="table-striped table-hover table-bordered table-condensed">
 		<tr >
 		<th>#No</th>
@@ -29,7 +30,7 @@
   <%   if @ban==true  %>
   <th>Municipio </th>
 <% end %>
-
+  <% nor=0 %>  <% urg=0 %>  <% no=0 %>
 	</tr>
 
 
@@ -37,15 +38,25 @@
 	<% @institucion.each_with_index do |item, index|%>
 		    	<tr>
 		    				<th><%= index+1 %></th>
+                 <%@total=index%>
   							<th><%=item.cedula %></th>
-							<th><%=item.nombres.capitalize%></th>
-							<th><%=item.direccion.capitalize%></th>
+							<th><%=item.nombres.upcase%></th>
+							<th><%=item.direccion.upcase%></th>
 							<th><%=item.telefono1%></th>
               <th>
               <%#=item.ayuditas %> <%#=item.estado %>
               <% if !@listado_ayudas.blank? %>
 							  <% @listado_ayudas.each_with_index do |ayudas, index1|  %>
 							   <% if ayudas.id == item.id%>
+                          <% if ayudas.estado=='Normal'%>
+                            <% nor=nor+1%>
+                          <% else %>
+                              <% if ayudas.estado=='Urgente'%>
+                                <% urg=urg+1%>
+                              <% else %>
+                                 <% no=no+1%>
+                              <% end %>
+                          <% end %>
 							  	       	- <%=ayudas.ayuditas%>	(<%=ayudas.estado%>)<br/>
 									<% end -%>
 
@@ -54,24 +65,29 @@
 
 							</th>
               <%   if @ban2==true  %>
-              <th><%= item.sector %></th>
+              <th><%= item.sector.upcase %></th>
               <% end %>
               <%   if @ban1==true  %>
               <th> <%=item.fecha.strftime("%d/%m")%> </th>
               <% end %>
               <%   if @ban==true  %>
-                <th> <%= item.municipio%> </th>
+                <th> <%= item.municipio.upcase%> </th>
               <% end %>
 
 				</tr>
+
 		  <% end %>
 	<%end %>
 
 
 
 </table>
+ <hr />
+ <div align="left"><b>TOTAL DE FAMILIAS VISITADAS: <%= @total+1 %></b></div>
+ <div align="left"><b>TOTAL DE SOLICITUDES:<%= nor+urg+no %> - TOTAL NORMALES: <%= nor %> - TOTAL URGENTES: <%= urg %> - TOTAL NO PROCEDE: <%= no %></b></div>
+
 <%else%>
 <br/>
   <strong><b>No existen resultados para esa consulta </b></strong>
 <% end %>
-</p> 
+</p>
