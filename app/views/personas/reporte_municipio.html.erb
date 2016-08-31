@@ -65,7 +65,7 @@
   <td colspan="2" align="center">
 			<% if !@nop.blank? %>
 			  <% for item3 in @nop %>
-			        <%= item1.cuenta if (item3.id==item.id) %>
+			        <%= item3.cuenta if (item3.id==item.id) %>
                    <%no=no+item3.cuenta if (item3.id==item.id) %>
 			           	<% item1 = @nop.length+1 %>
 
