@@ -306,9 +306,11 @@ Estudio Social <small>
         <%= render 'conclusion_fields', f: conclusion%>
     <% end %>
 
-    <div class= ".link">
-    <%= link_to_add_association 'Agregar Ayudas', f, :conclusions %>
-    </div>
+
+
+    <%= link_to_add_association  f, :conclusions ,:class=> "btn medium bg-green" do%>
+      <span class="button-content text-transform-upr font-bold font-size-11">Agregar Ayudas</span>
+    <%end %>
 
 </div>
 
